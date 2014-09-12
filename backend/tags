@@ -23,7 +23,7 @@ FF\CommonBundle\Tests	src/FF/CommonBundle/Tests/BaseTest.php	/^<?php$/;"	n
 FF\CommonBundle\Tests	src/FF/CommonBundle/Tests/SerializationBaseTest.php	/^<?php$/;"	n
 FF\CommonBundle\View	src/FF/CommonBundle/View/Table.php	/^<?php$/;"	n
 Game	src/Hackathon/Bundle/GameBundle/Entity/Game.php	/^class Game$/;"	c	namespace:Hackathon\Bundle\GameBundle\Entity
-GameRepository	src/Hackathon/Bundle/GameBundle/Entity/GameRepository.php	/^class GameRepository extends EntityRepository$/;"	c	namespace:Hackathon\Bundle\GameBundle\Entity	inherits:EntityRepository
+GameRepository	src/Hackathon/Bundle/GameBundle/Entity/GameRepository.php	/^class GameRepository extends EntityRepository$/;"	c	namespace:Hackathon\Bundle\GameBundle\Entity
 GameTurn	src/Hackathon/Bundle/GameBundle/Entity/GameTurn.php	/^class GameTurn$/;"	c	namespace:Hackathon\Bundle\GameBundle\Entity
 GameTurnRepository	src/Hackathon/Bundle/GameBundle/Entity/GameTurnRepository.php	/^class GameTurnRepository extends EntityRepository$/;"	c	namespace:Hackathon\Bundle\GameBundle\Entity	inherits:EntityRepository
 HackathonGameBundle	src/Hackathon/Bundle/GameBundle/HackathonGameBundle.php	/^class HackathonGameBundle extends Bundle$/;"	c	namespace:Hackathon\Bundle\GameBundle	inherits:Bundle
@@ -64,6 +64,7 @@ createObjectResponse	src/FF/CommonBundle/Controller/ApiController.php	/^    prot
 createValidationErrorResponse	src/FF/CommonBundle/Controller/ApiController.php	/^    protected function createValidationErrorResponse(ConstraintViolation $violation)$/;"	f	class:FF\CommonBundle\Controller::ApiController	access:protected	signature:(ConstraintViolation $violation)
 data	src/FF/CommonBundle/View/Table.php	/^	protected $data;$/;"	v	class:FF\CommonBundle\View::Table	access:protected
 execute	src/Hackathon/Bundle/GameBundle/Command/TestCommand.php	/^    protected function execute(InputInterface $input, OutputInterface $output)$/;"	f	class:Hackathon\Bundle\GameBundle\Command::TestCommand
+findCurrentGame	src/Hackathon/Bundle/GameBundle/Entity/GameRepository.php	/^    public function findCurrentGame()$/;"	f	class:Hackathon\Bundle\GameBundle\Entity::GameRepository
 game	src/Hackathon/Bundle/GameBundle/Entity/GameTurn.php	/^    private $game;$/;"	v	class:Hackathon\Bundle\GameBundle\Entity::GameTurn
 game	src/Hackathon/Bundle/GameBundle/Entity/User.php	/^    private $game;$/;"	v	class:Hackathon\Bundle\GameBundle\Entity::User
 getAttribute	src/FF/CommonBundle/View/Table.php	/^	public function getAttribute($name)$/;"	f	class:FF\CommonBundle\View::Table	access:public	signature:($name)

@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class GameRepository extends EntityRepository
 {
+    /**
+     * Returns the current game
+     */
+    public function findCurrentGame()
+    {
+	$games = $this->findBy(array(), array("id" => "DESC"), 1);
+	return $games[0];
+    }
 }
