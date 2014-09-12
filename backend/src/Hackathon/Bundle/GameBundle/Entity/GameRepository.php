@@ -20,4 +20,5 @@ class GameRepository extends EntityRepository
 	$games = $this->findBy(array(), array("id" => "DESC"), 1);
 	return $games[0];
     }
+
 }

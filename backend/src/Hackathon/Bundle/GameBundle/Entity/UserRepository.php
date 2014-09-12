@@ -12,4 +12,36 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    /**
+     * Find result of the round. 
+     * 
+     * If game is NULL the current game is taken.
+     *
+     * @return An array with selection and selection_count keys
+     */
+    public function findRoundResult($game = NULL) 
+    {
+	if ($game == NULL) {
+	    // Load the current game
+	    $repo = $this->getEntityManager()->getRepository("HackathonGameBundle:Game");
+	    $game = $repo->findCurrentGame();
+	}
+
+	$queryBuilder = $this->createQueryBuilder("user");
+	$queryBuilder->select("user.selection, count(user.id) as selection_count");
+	$queryBuilder->where("user.game = :game");
+	$queryBuilder->andWhere("user.selection != -1");
+
+	// Set parameters
+	$queryBuilder->setParameters(array(
+	    'game' => $game,
+	));
+
+	// Select by user
+	$queryBuilder->groupBy("user.selection");
+
+	$result = $queryBuilder->getQuery()->getResult();
+	return $result[0];
+    }
+
 }
