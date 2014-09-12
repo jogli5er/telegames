@@ -26,11 +26,13 @@
             var html = '<div class="teamSelection">';
             html += '<h2>Choose your team</h2>';
             html += '<div class="teamSelectionBtnGroup">';
+            html += '<div class="btn-group" id="teamSelectionButtons">';
             var t;
             for (var i = 0, len = data.teams.length; i < len; i++) {
                 t = data.teams[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + t.id + '">' + t.name + '</button>' + "\n";
             }
+            html += '</div>';
             html += '</div>';
             html += '</div>';
 
@@ -48,7 +50,6 @@
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 m = data.moves[i];
-                html += '<div class="btn-group" id="teamSelectionButtons">';
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>' + "\n";
                 html += '</div>';
             }
@@ -68,6 +69,7 @@
 //TIMING CLASSES
     var setTimer = function(){
         appState.time.timeoutId = setTimeout(function(){
+            console.log(appState.time.remainingTime);
             appState.time.remainingTime = appState.time.remainingTime - 1;
             if( appState.time.remainingTime > 0 )
                 setTimer();
