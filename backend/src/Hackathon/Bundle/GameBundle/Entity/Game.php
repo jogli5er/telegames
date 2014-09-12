@@ -3,6 +3,7 @@
 namespace Hackathon\Bundle\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Game
@@ -28,6 +29,14 @@ class Game
      */
     private $type;
 
+    /**
+     * @ORM\OneToMany(targetEntity="GameTurn", mappedBy="game")
+     */
+    private $turns;
+
+    public function __construct() {
+	$this->features = new ArrayCollection();
+    }
 
     /**
      * Get id
