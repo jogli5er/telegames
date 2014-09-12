@@ -7,6 +7,7 @@
         currentView: 'join', //there is another view for not 
         nextView: 'join',
         selectedTeamId: 0,
+        userId: 0,
         time:{
             serverCurrentTime: 'unixtimestring', //Unix timestamp
             clientCurrentTime: 'unixtimestring', //Unix timestamp
@@ -135,6 +136,7 @@
         appState.selectedTeam = selectedTeam;
         var jqxhr = $.post( BASE_URL + URL_GAME_JOIN, selectedTeam, function(data){
             appState.nextView = 'move';
+            appState.userId = data.id;
             setRemainingTime(data.currentMoveTTL);
             setTimer();
         });
@@ -143,11 +145,12 @@
 
     $(document).on('click', '.moveSelection button', function() {
         var selectedMove = $(this).attr('data-value');
-        var jqxhr = $.post(BASE_URL + URL_GAME_MOVE, selectedMove, function(data){
+        var jqxhr = $.post(BASE_URL + URL_GAME_MOVE + "/user/"+appState.userId , selectedMove, function(data){
             appState.nextView = 'move';
             setRemainingTime(data.currentMoveTTL);
             setTimer();
-        });
+        }
+        );
     });
 
     var main = function() {
