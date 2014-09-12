@@ -75,7 +75,7 @@
                 setTimer();
             else
             {
-                if(appState.nextState=='join')
+                if(appState.nextState==='join')
                     getTeams();
                 else
                     getNext();
