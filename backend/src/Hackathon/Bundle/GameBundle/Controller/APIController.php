@@ -127,7 +127,8 @@ class APIController extends Controller
 
 	// Prepare final objects
 	$data = array(
-	    "moves" => $formattedOptions
+	    "moves" => $formattedOptions,
+	    "currentMoveTTL" => $game->secondsUntilRoundEnd()
 	);
 
 	return $data;

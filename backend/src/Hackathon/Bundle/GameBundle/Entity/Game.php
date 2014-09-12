@@ -13,6 +13,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Game
 {
+    static public $turnLength = 30;
+
     /**
      * @var integer
      *
@@ -30,6 +32,17 @@ class Game
     private $type;
 
     /**
+     * @ORM\Column(name="created", type="datetime")
+     */
+    private $created;
+
+    /**
+     * The time when the next turn ends.
+     * @ORM\Column(type="datetime")
+     */
+    private $nextTurnEndTime;
+
+    /**
      * @ORM\OneToMany(targetEntity="GameTurn", mappedBy="game")
      */
     private $turns;
@@ -41,6 +54,11 @@ class Game
 
     public function __construct() 
     {
+	$this->created = new \DateTime();
+	$turnEndTime = new \DateTime();
+	$turnEndTime->add(new \DateInterval("PT". self::$turnLength ."S"));
+	$this->nextTurnEndTime = $turnEndTime;
+
 	$this->users = new ArrayCollection();
 	$this->turns = new ArrayCollection();
     }
@@ -109,5 +127,39 @@ class Game
     {
 	$this->turns[] =  $turn;
 	$turn->setGame($this);
+    }
+
+    /*
+     * Setter for nextTurnEndTime
+     */
+    public function setNextTurnEndTime($nextTurnEndTime)
+    {
+        $this->nextTurnEndTime = $nextTurnEndTime;
+        return $this;
+    }
+     
+    /*
+     * Getter for nextTurnEndTime
+     */
+    public function getNextTurnEndTime()
+    {
+        return $this->nextTurnEndTime;
+    }
+    
+
+    /**
+     * returns the time in seconds till the next round ends
+     */
+    public function secondsUntilRoundEnd()
+    {
+	if ($this->getNextTurnEndTime() == NULL) {
+	    return -1;
+	}
+
+	$currentDate = new \DateTime();
+	$currentDateTimestamp = $currentDate->getTimestamp();
+	$nextRoundEndTimestamp = $this->getNextTurnEndTime()->getTimestamp();
+
+	return $nextRoundEndTimestamp - $currentDateTimestamp;
     }
 }
