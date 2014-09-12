@@ -68,13 +68,12 @@
 //TIMING CLASSES
     var setTimer = function(){
         appState.time.timeoutId = setTimeout(function(){
-            console.log(appState.time.remainingTime);
             appState.time.remainingTime = appState.time.remainingTime - 1;
             if( appState.time.remainingTime > 0 )
                 setTimer();
             else
                 getNext();
-            $(".timer").html(appState.time.timeoutId);
+            $(".timer").html(appState.time.remainingTime);
         },1000);
     }
 
