@@ -70,7 +70,21 @@ class APIController extends Controller
 	$gameLogic = new ConnectFour($game);
 
 	$options = $gameLogic->getOptions();
-	return $this->createObjectResponse($options);
-    }
 
+	// Prepare the data
+	$formattedOptions = array();
+	foreach ($options as $key) {
+	    $option = array(
+		"id" => $key,
+		"name" => "Column " . $key
+	    );
+	    $formattedOptions[] = $option;
+	}
+
+	$data = array(
+	    "moves" => $formattedOptions
+	);
+
+	return $this->createObjectResponse($data);
+    }
 }
