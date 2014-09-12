@@ -12,7 +12,6 @@ class TeletextCommunicator
 
     public static function post($text)
     {
-        var_dump($text);
         $ch = curl_init(self::$apiEndpoint . self::$channel . '/' . self::$page);
 
         curl_setopt($ch, CURLOPT_POST, true);
