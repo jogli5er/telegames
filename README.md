@@ -20,7 +20,8 @@ Data (id of selected Team):
 Response:
 
     {
-        "sessionId": "irgendetwas"
+        "sessionId": "irgendetwas",
+        "startingTeamId": "givesUsBackTheStartingTeam"
     }
 
 ### GET game/move
@@ -33,7 +34,8 @@ Response:
             { "id": 1, "name": "Column 2" },
             { "id": 2, "name": "Column 3" },
         ],
-        "currentMoveTTL": 23
+        "currentMoveTTL": 23,
+        "currentTeamId":"givesUsBackTheCurrentPlayingTeam"
     }
 
 
