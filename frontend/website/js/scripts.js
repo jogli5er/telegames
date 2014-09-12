@@ -147,7 +147,7 @@
             appState.nextView = 'move';
             setRemainingTime(data.currentMoveTTL);
             setTimer();
-        })
+        });
     });
 
     var main = function() {
