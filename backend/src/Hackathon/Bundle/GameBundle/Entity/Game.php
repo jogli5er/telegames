@@ -122,6 +122,11 @@ class Game
 	$user->setGame($this);
     }
 
+    public function getUsers()
+    {
+	return $this->users->toArray();
+    }
+
     /*
      * Getter for turns
      */
@@ -212,6 +217,30 @@ class Game
     {
         $turns = count($this->getTurns());
         return ($turns+$this->getFirstTeam()) % 2 == 0 ? 2 : 1;
+    }
+
+    public function getCurrentOptionSelection()
+    {
+	$selectedObjects = array(0,0,0,0,0,0,0, 0);
+	$turnUserCount = 0;
+	foreach ($this->users as $user) {
+	    // Only if the user is part of the current team
+	    if ($this->getCurrentTeam() == $user->getTeam()) {
+		$turnUserCount++;
+		$selection = $user->getSelection();
+		if ($selection == -1) {
+		    $selectedObjects[7] += 1;
+		}
+		else {
+		    $selectedObjects[$selection] += 1;
+		}
+	    }
+	}
+
+	$selectedObjects["turnUserCount"] = $turnUserCount;
+
+	return $selectedObjects;
+
     }
 
     /**

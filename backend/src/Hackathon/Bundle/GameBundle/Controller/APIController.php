@@ -99,14 +99,23 @@ class APIController extends Controller
      */
     public function updateMoveAction(User $user)
     {
+	// Return an error if the user is not in the current team
+	$entityManager = $this->getDoctrine()->getManager();
+	$repo = $entityManager->getRepository("HackathonGameBundle:Game");
+	$game = $repo->findCurrentGame();
+	if ($game->getCurrentTeam() != $user->getTeam()) {
+	    return $this->createErrorResponse(
+		"User is not in current team", 
+		"You should wait for the next turn"
+	    );
+	}
+
 	$request = $this->getRequest();
 	$bodyContent = $request->getContent();
 
 	// Get the number and check range
 	$selectedOption = intval($bodyContent);
 
-	/// @todo Check if selected option is valid
-	
 	// Set selection and store
 	$user->setSelection($selectedOption);
 	$entityManager = $this->getDoctrine()->getManager();
