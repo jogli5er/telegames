@@ -23,6 +23,7 @@ class ConnectFour
                 $this->grid[$i][$j] = 0;
             }
         }
+        $this->addMoves();
     }
 
     public function getOptions() {
@@ -53,11 +54,8 @@ class ConnectFour
     }
 
     public function checkWin() {
-        // $turns = $this->game->getTurns();
-        // $last = end($turns)->getMove();
-        // return intval(10000000000000000000000000000000000000000000000 + 10000000000000000000000000000000000000000000000);
-        // return $this->grid[$last];
-        // return $last;
+        // Thank you! http://stackoverflow.com/questions/20201216/connect-4-check-for-winner-algorithm
+        // Cool but c code: http://stackoverflow.com/questions/7033165/algorithm-to-check-a-connect-four-field
         if ($this->grid[0][0] == 1 and  $this->grid[1][0] == 1 and  $this->grid[2][0] == 1 and  $this->grid[3][0] == 1){return 1;}
         if ($this->grid[0][0] == 2 and  $this->grid[1][0] == 2 and  $this->grid[2][0] == 2 and  $this->grid[3][0] == 2){return 2;}
         if ($this->grid[1][0] == 1 and  $this->grid[2][0] == 1 and  $this->grid[3][0] == 1 and  $this->grid[4][0] == 1){return 1;}
