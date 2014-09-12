@@ -1,0 +1,7 @@
+parameters:
+#    ff_common.example.class: FF\CommonBundle\Example
+
+services:
+#    ff_common.example:
+#        class: %ff_common.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

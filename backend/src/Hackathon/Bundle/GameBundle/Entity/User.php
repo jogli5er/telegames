@@ -42,6 +42,10 @@ class User
      */
     private $selection;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="users")
+     */
+    private $game;
 
     /**
      * Get id
