@@ -1,7 +1,17 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}HackathonGameBundle:Emulator:index{% endblock %}
+{% block title %}Telegame: Teletext Emulator{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Emulator:index page</h1>
+<link href='http://fonts.googleapis.com/css?family=Cousine:400,700' rel='stylesheet' type='text/css'>
+<style>
+    html, body, .page { height: 100%; }
+    body { margin: 0; }
+    .page { background: #080808;  }
+    .page .teletext { padding-left: 30px; background: black; font-size: 28px; line-height: 1em; color: white; font-family: Cousine, monospace; white-space: pre; letter-spacing: 0.25em; }
+</style>
+
+<div class="page">
+    <div class="teletext">{{ text }}</div>
+</div>
 {% endblock %}

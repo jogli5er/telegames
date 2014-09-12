@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use Hackathon\Bundle\GameBundle\Formatter\TeletextFormatter;
+
 class EmulatorController extends Controller
 {
     /**
@@ -14,9 +16,12 @@ class EmulatorController extends Controller
      */
     public function indexAction()
     {
-        return array(
-                // ...
-	);  
+    	$entityManager = $this->getDoctrine()->getManager();
+    	$repo = $entityManager->getRepository("HackathonGameBundle:Game");
+    	$game = $repo->findCurrentGame();
+
+        $formatter = new TeletextFormatter($game);
+        return array('text' => $formatter->getFormat());
     }
 
 }
