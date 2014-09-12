@@ -21,8 +21,10 @@ ControllerListener	src/Acme/DemoBundle/EventListener/ControllerListener.php	/^cl
 DemoController	src/Acme/DemoBundle/Controller/DemoController.php	/^class DemoController extends Controller$/;"	c	namespace:Acme\DemoBundle\Controller	inherits:Controller
 DemoControllerTest	src/Acme/DemoBundle/Tests/Controller/DemoControllerTest.php	/^class DemoControllerTest extends WebTestCase$/;"	c	namespace:Acme\DemoBundle\Tests\Controller	inherits:WebTestCase
 DemoExtension	src/Acme/DemoBundle/Twig/Extension/DemoExtension.php	/^class DemoExtension extends \\Twig_Extension$/;"	c	namespace:Acme\DemoBundle\Twig\Extension	inherits:Twig_Extension
+FF\MessageBundle\Entity	src/Hackathon/Bundle/GameBundle/Entity/User.php	/^<?php$/;"	n
 HelloWorldCommand	src/Acme/DemoBundle/Command/HelloWorldCommand.php	/^class HelloWorldCommand extends Command$/;"	c	namespace:Acme\DemoBundle\Command	inherits:Command
 SecuredController	src/Acme/DemoBundle/Controller/SecuredController.php	/^class SecuredController extends Controller$/;"	c	namespace:Acme\DemoBundle\Controller	inherits:Controller
+User	src/Hackathon/Bundle/GameBundle/Entity/User.php	/^class User$/;"	c	namespace:FF\MessageBundle\Entity
 WelcomeController	src/Acme/DemoBundle/Controller/WelcomeController.php	/^class WelcomeController extends Controller$/;"	c	namespace:Acme\DemoBundle\Controller	inherits:Controller
 __construct	src/Acme/DemoBundle/EventListener/ControllerListener.php	/^    public function __construct(DemoExtension $extension)$/;"	f	class:Acme\DemoBundle\EventListener::ControllerListener	access:public	signature:(DemoExtension $extension)
 __construct	src/Acme/DemoBundle/Twig/Extension/DemoExtension.php	/^    public function __construct(\\Twig_LoaderInterface $loader)$/;"	f	class:Acme\DemoBundle\Twig\Extension::DemoExtension	access:public	signature:(Twig_LoaderInterface $loader)
@@ -36,12 +38,16 @@ getAlias	src/Acme/DemoBundle/DependencyInjection/AcmeDemoExtension.php	/^    pub
 getCode	src/Acme/DemoBundle/Twig/Extension/DemoExtension.php	/^    public function getCode($template)$/;"	f	class:Acme\DemoBundle\Twig\Extension::DemoExtension	access:public	signature:($template)
 getControllerCode	src/Acme/DemoBundle/Twig/Extension/DemoExtension.php	/^    protected function getControllerCode()$/;"	f	class:Acme\DemoBundle\Twig\Extension::DemoExtension	access:protected	signature:()
 getFunctions	src/Acme/DemoBundle/Twig/Extension/DemoExtension.php	/^    public function getFunctions()$/;"	f	class:Acme\DemoBundle\Twig\Extension::DemoExtension	access:public	signature:()
+getId	src/Hackathon/Bundle/GameBundle/Entity/User.php	/^    public function getId()$/;"	f	class:FF\MessageBundle\Entity::User
 getName	src/Acme/DemoBundle/Form/ContactType.php	/^    public function getName()$/;"	f	class:Acme\DemoBundle\Form::ContactType	access:public	signature:()
 getName	src/Acme/DemoBundle/Twig/Extension/DemoExtension.php	/^    public function getName()$/;"	f	class:Acme\DemoBundle\Twig\Extension::DemoExtension	access:public	signature:()
+getName	src/Hackathon/Bundle/GameBundle/Entity/User.php	/^    public function getName()$/;"	f	class:FF\MessageBundle\Entity::User
+getSelection	src/Hackathon/Bundle/GameBundle/Entity/User.php	/^    public function getSelection()$/;"	f	class:FF\MessageBundle\Entity::User
 getTemplateCode	src/Acme/DemoBundle/Twig/Extension/DemoExtension.php	/^    protected function getTemplateCode($template)$/;"	f	class:Acme\DemoBundle\Twig\Extension::DemoExtension	access:protected	signature:($template)
 helloAction	src/Acme/DemoBundle/Controller/DemoController.php	/^    public function helloAction($name)$/;"	f	class:Acme\DemoBundle\Controller::DemoController	access:public	signature:($name)
 helloAction	src/Acme/DemoBundle/Controller/SecuredController.php	/^    public function helloAction($name)$/;"	f	class:Acme\DemoBundle\Controller::SecuredController	access:public	signature:($name)
 helloadminAction	src/Acme/DemoBundle/Controller/SecuredController.php	/^    public function helloadminAction($name)$/;"	f	class:Acme\DemoBundle\Controller::SecuredController	access:public	signature:($name)
+id	src/Hackathon/Bundle/GameBundle/Entity/User.php	/^    private $id;$/;"	v	class:FF\MessageBundle\Entity::User
 indexAction	src/Acme/DemoBundle/Controller/DemoController.php	/^    public function indexAction()$/;"	f	class:Acme\DemoBundle\Controller::DemoController	access:public	signature:()
 indexAction	src/Acme/DemoBundle/Controller/WelcomeController.php	/^    public function indexAction()$/;"	f	class:Acme\DemoBundle\Controller::WelcomeController	access:public	signature:()
 load	src/Acme/DemoBundle/DependencyInjection/AcmeDemoExtension.php	/^    public function load(array $configs, ContainerBuilder $container)$/;"	f	class:Acme\DemoBundle\DependencyInjection::AcmeDemoExtension	access:public	signature:(array $configs, ContainerBuilder $container)
@@ -50,6 +56,10 @@ loginAction	src/Acme/DemoBundle/Controller/SecuredController.php	/^    public fu
 logoutAction	src/Acme/DemoBundle/Controller/SecuredController.php	/^    public function logoutAction()$/;"	f	class:Acme\DemoBundle\Controller::SecuredController	access:public	signature:()
 onKernelController	src/Acme/DemoBundle/EventListener/ControllerListener.php	/^    public function onKernelController(FilterControllerEvent $event)$/;"	f	class:Acme\DemoBundle\EventListener::ControllerListener	access:public	signature:(FilterControllerEvent $event)
 securityCheckAction	src/Acme/DemoBundle/Controller/SecuredController.php	/^    public function securityCheckAction()$/;"	f	class:Acme\DemoBundle\Controller::SecuredController	access:public	signature:()
+selection	src/Hackathon/Bundle/GameBundle/Entity/User.php	/^    private $selection;$/;"	v	class:FF\MessageBundle\Entity::User
 setController	src/Acme/DemoBundle/Twig/Extension/DemoExtension.php	/^    public function setController($controller)$/;"	f	class:Acme\DemoBundle\Twig\Extension::DemoExtension	access:public	signature:($controller)
+setName	src/Hackathon/Bundle/GameBundle/Entity/User.php	/^    public function setName($name)$/;"	f	class:FF\MessageBundle\Entity::User
+setSelection	src/Hackathon/Bundle/GameBundle/Entity/User.php	/^    public function setSelection($selection)$/;"	f	class:FF\MessageBundle\Entity::User
+team	src/Hackathon/Bundle/GameBundle/Entity/User.php	/^    private $team;$/;"	v	class:FF\MessageBundle\Entity::User
 testIndex	src/Acme/DemoBundle/Tests/Controller/DemoControllerTest.php	/^    public function testIndex()$/;"	f	class:Acme\DemoBundle\Tests\Controller::DemoControllerTest	access:public	signature:()
 testSecureSection	src/Acme/DemoBundle/Tests/Controller/DemoControllerTest.php	/^    public function testSecureSection()$/;"	f	class:Acme\DemoBundle\Tests\Controller::DemoControllerTest	access:public	signature:()
