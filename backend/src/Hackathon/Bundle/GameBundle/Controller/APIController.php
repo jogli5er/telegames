@@ -56,7 +56,12 @@ class APIController extends Controller
 	$entityManager->persist($user);
 	$entityManager->flush();
 
-	return $this->createObjectResponse($user);
+	$data = array(
+	    "id" => $user->getId(),
+	    "team" => $user->getTeam(),
+	);
+	
+	return $this->createObjectResponse($data);
     }
 
     /**
@@ -127,8 +132,7 @@ class APIController extends Controller
 
 	// Prepare final objects
 	$data = array(
-	    "moves" => $formattedOptions,
-	    "currentMoveTTL" => $game->secondsUntilRoundEnd()
+	    "moves" => $formattedOptions
 	);
 
 	return $data;
