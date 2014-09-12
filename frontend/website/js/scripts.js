@@ -1,7 +1,7 @@
 (function(w, $) {
     var BASE_URL = 'http://10.201.3.43/sites/telegames/backend/web/app_dev.php';
-    var URL_GAME_JOIN = 'game/join';
-    var URL_GAME_MOVE = 'game/move';
+    var URL_GAME_JOIN = '/game/join';
+    var URL_GAME_MOVE = '/game/move';
     var appState = {
         sessionId: 'somewrongid',
         currentView: 'join', //there is another view for not 
@@ -72,7 +72,7 @@
             if( appState.time.remainingTime > 0 )
                 setTimer();
             else
-                getNext();
+                getNextView();
         },1000);
     }
 
@@ -81,8 +81,28 @@
         appState.time.remainingTime = newRemainer;
     }
 
+//VIEW CLASSES
+    var getNextView = function(){
+        if(appState.currentView = 'join')
+            getTeams();
+        else
+            getNext();
+    }
+
     var getNext = function(){
         console.log("Get next view from server");
+        $.get(
+            BASE_URL + URL_GAME_MOVE,
+            function(data){
+                if(data.isFinished)
+                    appState.nextView  = 'join';
+                else
+                    appState.nextView  = 'move';
+            }
+        );
+    }
+
+    var postNext = function(){
 
     }
 
@@ -94,6 +114,10 @@
                 return data;
             }
         );
+    }
+
+    var postTeam = function(){
+        
     }
 
     $(document).on('click', '.teamSelection button', function() {
