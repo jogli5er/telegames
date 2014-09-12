@@ -46,14 +46,13 @@
             appState.currentView  = 'move';
             var html = '<div class="moveSelection">';
             html += '<h2>Choose your move</h2>';
-            html += '<div class="moveSelectionBtnGroup">'
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
+                html += '<div class="moveSelectionBtnGroup">'
                 m = data.moves[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>' + "\n";
                 html += '</div>';
             }
-            html += '</div>';
             html += '</div>';
 
             container.innerHTML = html;
