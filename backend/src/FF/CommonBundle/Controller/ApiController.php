@@ -63,6 +63,12 @@ class ApiController extends Controller
      */
     protected function createObjectResponse($object, $statusCode = JsonResponse::HTTP_OK, $serializationContext = null)
     {
+	// We want to add the currentMoveTTL to every response
+	$entityManager = $this->getDoctrine()->getManager();
+	$repo = $entityManager->getRepository("HackathonGameBundle:Game");
+	$game = $repo->findCurrentGame();
+	$object["currentMoveTTL"] = $game->secondsUntilRoundEnd();
+
 	$serializer = SerializerBuilder::create()->build();
 	$json = $serializer->serialize($object, 'json', $serializationContext);
 

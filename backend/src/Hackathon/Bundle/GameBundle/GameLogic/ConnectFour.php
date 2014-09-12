@@ -23,6 +23,7 @@ class ConnectFour
                 $this->grid[$i][$j] = 0;
             }
         }
+        $this->addMoves();
     }
 
     public function getOptions() {
@@ -35,8 +36,164 @@ class ConnectFour
         return $options;
     }
 
+    public function addMove($column, $move) {
+        $col = $this->grid[$column];
+        foreach ($col as $key => $value){
+            if($value == 0){
+                $this->grid[$column][$key] = $move % 2 == 0 ? 1 : 2;
+                break;
+            }
+        }
+    }
+
     public function addMoves() {
-        $test = $this->game->getTurns();
-        return $test[0]->getMove();
+        $turns = $this->game->getTurns();
+        foreach ($turns as $key => $value){
+            $this->addMove($value->getMove(), $key);
+        }
+    }
+
+    public function checkWin() {
+        // Thank you! http://stackoverflow.com/questions/20201216/connect-4-check-for-winner-algorithm
+        // Cool but c code: http://stackoverflow.com/questions/7033165/algorithm-to-check-a-connect-four-field
+        if ($this->grid[0][0] == 1 and  $this->grid[1][0] == 1 and  $this->grid[2][0] == 1 and  $this->grid[3][0] == 1){return 1;}
+        if ($this->grid[0][0] == 2 and  $this->grid[1][0] == 2 and  $this->grid[2][0] == 2 and  $this->grid[3][0] == 2){return 2;}
+        if ($this->grid[1][0] == 1 and  $this->grid[2][0] == 1 and  $this->grid[3][0] == 1 and  $this->grid[4][0] == 1){return 1;}
+        if ($this->grid[1][0] == 2 and  $this->grid[2][0] == 2 and  $this->grid[3][0] == 2 and  $this->grid[4][0] == 2){return 2;}
+        if ($this->grid[2][0] == 1 and  $this->grid[3][0] == 1 and  $this->grid[4][0] == 1 and  $this->grid[5][0] == 1){return 1;}
+        if ($this->grid[2][0] == 2 and  $this->grid[3][0] == 2 and  $this->grid[4][0] == 2 and  $this->grid[5][0] == 2){return 2;}
+        if ($this->grid[3][0] == 1 and  $this->grid[4][0] == 1 and  $this->grid[5][0] == 1 and  $this->grid[6][0] == 1){return 1;}
+        if ($this->grid[3][0] == 2 and  $this->grid[4][0] == 2 and  $this->grid[5][0] == 2 and  $this->grid[6][0] == 2){return 2;}
+        if ($this->grid[0][1] == 1 and  $this->grid[1][1] == 1 and  $this->grid[2][1] == 1 and  $this->grid[3][1] == 1){return 1;}
+        if ($this->grid[0][1] == 2 and  $this->grid[1][1] == 2 and  $this->grid[2][1] == 2 and  $this->grid[3][1] == 2){return 2;}
+        if ($this->grid[1][1] == 1 and  $this->grid[2][1] == 1 and  $this->grid[3][1] == 1 and  $this->grid[4][1] == 1){return 1;}
+        if ($this->grid[1][1] == 2 and  $this->grid[2][1] == 2 and  $this->grid[3][1] == 2 and  $this->grid[4][1] == 2){return 2;}
+        if ($this->grid[2][1] == 1 and  $this->grid[3][1] == 1 and  $this->grid[4][1] == 1 and  $this->grid[5][1] == 1){return 1;}
+        if ($this->grid[2][1] == 2 and  $this->grid[3][1] == 2 and  $this->grid[4][1] == 2 and  $this->grid[5][1] == 2){return 2;}
+        if ($this->grid[3][1] == 1 and  $this->grid[4][1] == 1 and  $this->grid[5][1] == 1 and  $this->grid[6][1] == 1){return 1;}
+        if ($this->grid[3][1] == 2 and  $this->grid[4][1] == 2 and  $this->grid[5][1] == 2 and  $this->grid[6][1] == 2){return 2;}
+        if ($this->grid[0][2] == 1 and  $this->grid[1][2] == 1 and  $this->grid[2][2] == 1 and  $this->grid[3][2] == 1){return 1;}
+        if ($this->grid[0][2] == 2 and  $this->grid[1][2] == 2 and  $this->grid[2][2] == 2 and  $this->grid[3][2] == 2){return 2;}
+        if ($this->grid[1][2] == 1 and  $this->grid[2][2] == 1 and  $this->grid[3][2] == 1 and  $this->grid[4][2] == 1){return 1;}
+        if ($this->grid[1][2] == 2 and  $this->grid[2][2] == 2 and  $this->grid[3][2] == 2 and  $this->grid[4][2] == 2){return 2;}
+        if ($this->grid[2][2] == 1 and  $this->grid[3][2] == 1 and  $this->grid[4][2] == 1 and  $this->grid[5][2] == 1){return 1;}
+        if ($this->grid[2][2] == 2 and  $this->grid[3][2] == 2 and  $this->grid[4][2] == 2 and  $this->grid[5][2] == 2){return 2;}
+        if ($this->grid[3][2] == 1 and  $this->grid[4][2] == 1 and  $this->grid[5][2] == 1 and  $this->grid[6][2] == 1){return 1;}
+        if ($this->grid[3][2] == 2 and  $this->grid[4][2] == 2 and  $this->grid[5][2] == 2 and  $this->grid[6][2] == 2){return 2;}
+        if ($this->grid[0][3] == 1 and  $this->grid[1][3] == 1 and  $this->grid[2][3] == 1 and  $this->grid[3][3] == 1){return 1;}
+        if ($this->grid[0][3] == 2 and  $this->grid[1][3] == 2 and  $this->grid[2][3] == 2 and  $this->grid[3][3] == 2){return 2;}
+        if ($this->grid[1][3] == 1 and  $this->grid[2][3] == 1 and  $this->grid[3][3] == 1 and  $this->grid[4][3] == 1){return 1;}
+        if ($this->grid[1][3] == 2 and  $this->grid[2][3] == 2 and  $this->grid[3][3] == 2 and  $this->grid[4][3] == 2){return 2;}
+        if ($this->grid[2][3] == 1 and  $this->grid[3][3] == 1 and  $this->grid[4][3] == 1 and  $this->grid[5][3] == 1){return 1;}
+        if ($this->grid[2][3] == 2 and  $this->grid[3][3] == 2 and  $this->grid[4][3] == 2 and  $this->grid[5][3] == 2){return 2;}
+        if ($this->grid[3][3] == 1 and  $this->grid[4][3] == 1 and  $this->grid[5][3] == 1 and  $this->grid[6][3] == 1){return 1;}
+        if ($this->grid[3][3] == 2 and  $this->grid[4][3] == 2 and  $this->grid[5][3] == 2 and  $this->grid[6][3] == 2){return 2;}
+        if ($this->grid[0][4] == 1 and  $this->grid[1][4] == 1 and  $this->grid[2][4] == 1 and  $this->grid[3][4] == 1){return 1;}
+        if ($this->grid[0][4] == 2 and  $this->grid[1][4] == 2 and  $this->grid[2][4] == 2 and  $this->grid[3][4] == 2){return 2;}
+        if ($this->grid[1][4] == 1 and  $this->grid[2][4] == 1 and  $this->grid[3][4] == 1 and  $this->grid[4][4] == 1){return 1;}
+        if ($this->grid[1][4] == 2 and  $this->grid[2][4] == 2 and  $this->grid[3][4] == 2 and  $this->grid[4][4] == 2){return 2;}
+        if ($this->grid[2][4] == 1 and  $this->grid[3][4] == 1 and  $this->grid[4][4] == 1 and  $this->grid[5][4] == 1){return 1;}
+        if ($this->grid[2][4] == 2 and  $this->grid[3][4] == 2 and  $this->grid[4][4] == 2 and  $this->grid[5][4] == 2){return 2;}
+        if ($this->grid[3][4] == 1 and  $this->grid[4][4] == 1 and  $this->grid[5][4] == 1 and  $this->grid[6][4] == 1){return 1;}
+        if ($this->grid[3][4] == 2 and  $this->grid[4][4] == 2 and  $this->grid[5][4] == 2 and  $this->grid[6][4] == 2){return 2;}
+        if ($this->grid[0][5] == 1 and  $this->grid[1][5] == 1 and  $this->grid[2][5] == 1 and  $this->grid[3][5] == 1){return 1;}
+        if ($this->grid[0][5] == 2 and  $this->grid[1][5] == 2 and  $this->grid[2][5] == 2 and  $this->grid[3][5] == 2){return 2;}
+        if ($this->grid[1][5] == 1 and  $this->grid[2][5] == 1 and  $this->grid[3][5] == 1 and  $this->grid[4][5] == 1){return 1;}
+        if ($this->grid[1][5] == 2 and  $this->grid[2][5] == 2 and  $this->grid[3][5] == 2 and  $this->grid[4][5] == 2){return 2;}
+        if ($this->grid[2][5] == 1 and  $this->grid[3][5] == 1 and  $this->grid[4][5] == 1 and  $this->grid[5][5] == 1){return 1;}
+        if ($this->grid[2][5] == 2 and  $this->grid[3][5] == 2 and  $this->grid[4][5] == 2 and  $this->grid[5][5] == 2){return 2;}
+        if ($this->grid[3][5] == 1 and  $this->grid[4][5] == 1 and  $this->grid[5][5] == 1 and  $this->grid[6][5] == 1){return 1;}
+        if ($this->grid[3][5] == 2 and  $this->grid[4][5] == 2 and  $this->grid[5][5] == 2 and  $this->grid[6][5] == 2){return 2;}
+        if ($this->grid[0][0] == 1 and  $this->grid[0][1] == 1 and  $this->grid[0][2] == 1 and  $this->grid[0][3] == 1){return 1;}
+        if ($this->grid[0][0] == 2 and  $this->grid[0][1] == 2 and  $this->grid[0][2] == 2 and  $this->grid[0][3] == 2){return 2;}
+        if ($this->grid[0][1] == 1 and  $this->grid[0][2] == 1 and  $this->grid[0][3] == 1 and  $this->grid[0][4] == 1){return 1;}
+        if ($this->grid[0][1] == 2 and  $this->grid[0][2] == 2 and  $this->grid[0][3] == 2 and  $this->grid[0][4] == 2){return 2;}
+        if ($this->grid[0][2] == 1 and  $this->grid[0][3] == 1 and  $this->grid[0][4] == 1 and  $this->grid[0][5] == 1){return 1;}
+        if ($this->grid[0][2] == 2 and  $this->grid[0][3] == 2 and  $this->grid[0][4] == 2 and  $this->grid[0][5] == 2){return 2;}
+        if ($this->grid[1][0] == 1 and  $this->grid[1][1] == 1 and  $this->grid[1][2] == 1 and  $this->grid[1][3] == 1){return 1;}
+        if ($this->grid[1][0] == 2 and  $this->grid[1][1] == 2 and  $this->grid[1][2] == 2 and  $this->grid[1][3] == 2){return 2;}
+        if ($this->grid[1][1] == 1 and  $this->grid[1][2] == 1 and  $this->grid[1][3] == 1 and  $this->grid[1][4] == 1){return 1;}
+        if ($this->grid[1][1] == 2 and  $this->grid[1][2] == 2 and  $this->grid[1][3] == 2 and  $this->grid[1][4] == 2){return 2;}
+        if ($this->grid[1][2] == 1 and  $this->grid[1][3] == 1 and  $this->grid[1][4] == 1 and  $this->grid[1][5] == 1){return 1;}
+        if ($this->grid[1][2] == 2 and  $this->grid[1][3] == 2 and  $this->grid[1][4] == 2 and  $this->grid[1][5] == 2){return 2;}
+        if ($this->grid[2][0] == 1 and  $this->grid[2][1] == 1 and  $this->grid[2][2] == 1 and  $this->grid[2][3] == 1){return 1;}
+        if ($this->grid[2][0] == 2 and  $this->grid[2][1] == 2 and  $this->grid[2][2] == 2 and  $this->grid[2][3] == 2){return 2;}
+        if ($this->grid[2][1] == 1 and  $this->grid[2][2] == 1 and  $this->grid[2][3] == 1 and  $this->grid[2][4] == 1){return 1;}
+        if ($this->grid[2][1] == 2 and  $this->grid[2][2] == 2 and  $this->grid[2][3] == 2 and  $this->grid[2][4] == 2){return 2;}
+        if ($this->grid[2][2] == 1 and  $this->grid[2][3] == 1 and  $this->grid[2][4] == 1 and  $this->grid[2][5] == 1){return 1;}
+        if ($this->grid[2][2] == 2 and  $this->grid[2][3] == 2 and  $this->grid[2][4] == 2 and  $this->grid[2][5] == 2){return 2;}
+        if ($this->grid[3][0] == 1 and  $this->grid[3][1] == 1 and  $this->grid[3][2] == 1 and  $this->grid[3][3] == 1){return 1;}
+        if ($this->grid[3][0] == 2 and  $this->grid[3][1] == 2 and  $this->grid[3][2] == 2 and  $this->grid[3][3] == 2){return 2;}
+        if ($this->grid[3][1] == 1 and  $this->grid[3][2] == 1 and  $this->grid[3][3] == 1 and  $this->grid[3][4] == 1){return 1;}
+        if ($this->grid[3][1] == 2 and  $this->grid[3][2] == 2 and  $this->grid[3][3] == 2 and  $this->grid[3][4] == 2){return 2;}
+        if ($this->grid[3][2] == 1 and  $this->grid[3][3] == 1 and  $this->grid[3][4] == 1 and  $this->grid[3][5] == 1){return 1;}
+        if ($this->grid[3][2] == 2 and  $this->grid[3][3] == 2 and  $this->grid[3][4] == 2 and  $this->grid[3][5] == 2){return 2;}
+        if ($this->grid[4][0] == 1 and  $this->grid[4][1] == 1 and  $this->grid[4][2] == 1 and  $this->grid[4][3] == 1){return 1;}
+        if ($this->grid[4][0] == 2 and  $this->grid[4][1] == 2 and  $this->grid[4][2] == 2 and  $this->grid[4][3] == 2){return 2;}
+        if ($this->grid[4][1] == 1 and  $this->grid[4][2] == 1 and  $this->grid[4][3] == 1 and  $this->grid[4][4] == 1){return 1;}
+        if ($this->grid[4][1] == 2 and  $this->grid[4][2] == 2 and  $this->grid[4][3] == 2 and  $this->grid[4][4] == 2){return 2;}
+        if ($this->grid[4][2] == 1 and  $this->grid[4][3] == 1 and  $this->grid[4][4] == 1 and  $this->grid[4][5] == 1){return 1;}
+        if ($this->grid[4][2] == 2 and  $this->grid[4][3] == 2 and  $this->grid[4][4] == 2 and  $this->grid[4][5] == 2){return 2;}
+        if ($this->grid[5][0] == 1 and  $this->grid[5][1] == 1 and  $this->grid[5][2] == 1 and  $this->grid[5][3] == 1){return 1;}
+        if ($this->grid[5][0] == 2 and  $this->grid[5][1] == 2 and  $this->grid[5][2] == 2 and  $this->grid[5][3] == 2){return 2;}
+        if ($this->grid[5][1] == 1 and  $this->grid[5][2] == 1 and  $this->grid[5][3] == 1 and  $this->grid[5][4] == 1){return 1;}
+        if ($this->grid[5][1] == 2 and  $this->grid[5][2] == 2 and  $this->grid[5][3] == 2 and  $this->grid[5][4] == 2){return 2;}
+        if ($this->grid[5][2] == 1 and  $this->grid[5][3] == 1 and  $this->grid[5][4] == 1 and  $this->grid[5][5] == 1){return 1;}
+        if ($this->grid[5][2] == 2 and  $this->grid[5][3] == 2 and  $this->grid[5][4] == 2 and  $this->grid[5][5] == 2){return 2;}
+        if ($this->grid[6][0] == 1 and  $this->grid[6][1] == 1 and  $this->grid[6][2] == 1 and  $this->grid[6][3] == 1){return 1;}
+        if ($this->grid[6][0] == 2 and  $this->grid[6][1] == 2 and  $this->grid[6][2] == 2 and  $this->grid[6][3] == 2){return 2;}
+        if ($this->grid[6][1] == 1 and  $this->grid[6][2] == 1 and  $this->grid[6][3] == 1 and  $this->grid[6][4] == 1){return 1;}
+        if ($this->grid[6][1] == 2 and  $this->grid[6][2] == 2 and  $this->grid[6][3] == 2 and  $this->grid[6][4] == 2){return 2;}
+        if ($this->grid[6][2] == 1 and  $this->grid[6][3] == 1 and  $this->grid[6][4] == 1 and  $this->grid[6][5] == 1){return 1;}
+        if ($this->grid[6][2] == 2 and  $this->grid[6][3] == 2 and  $this->grid[6][4] == 2 and  $this->grid[6][5] == 2){return 2;}
+        if ($this->grid[0][3] == 1 and  $this->grid[1][2] == 1 and  $this->grid[2][1] == 1 and  $this->grid[3][0] == 1){return 1;}
+        if ($this->grid[0][3] == 2 and  $this->grid[1][2] == 2 and  $this->grid[2][1] == 2 and  $this->grid[3][0] == 2){return 2;}
+        if ($this->grid[3][3] == 1 and  $this->grid[2][2] == 1 and  $this->grid[1][1] == 1 and  $this->grid[0][0] == 1){return 1;}
+        if ($this->grid[3][3] == 2 and  $this->grid[2][2] == 2 and  $this->grid[1][1] == 2 and  $this->grid[0][0] == 2){return 2;}
+        if ($this->grid[0][4] == 1 and  $this->grid[1][3] == 1 and  $this->grid[2][2] == 1 and  $this->grid[3][1] == 1){return 1;}
+        if ($this->grid[0][4] == 2 and  $this->grid[1][3] == 2 and  $this->grid[2][2] == 2 and  $this->grid[3][1] == 2){return 2;}
+        if ($this->grid[3][4] == 1 and  $this->grid[2][3] == 1 and  $this->grid[1][2] == 1 and  $this->grid[0][1] == 1){return 1;}
+        if ($this->grid[3][4] == 2 and  $this->grid[2][3] == 2 and  $this->grid[1][2] == 2 and  $this->grid[0][1] == 2){return 2;}
+        if ($this->grid[0][5] == 1 and  $this->grid[1][4] == 1 and  $this->grid[2][3] == 1 and  $this->grid[3][2] == 1){return 1;}
+        if ($this->grid[0][5] == 2 and  $this->grid[1][4] == 2 and  $this->grid[2][3] == 2 and  $this->grid[3][2] == 2){return 2;}
+        if ($this->grid[3][5] == 1 and  $this->grid[2][4] == 1 and  $this->grid[1][3] == 1 and  $this->grid[0][2] == 1){return 1;}
+        if ($this->grid[3][5] == 2 and  $this->grid[2][4] == 2 and  $this->grid[1][3] == 2 and  $this->grid[0][2] == 2){return 2;}
+        if ($this->grid[1][3] == 1 and  $this->grid[2][2] == 1 and  $this->grid[3][1] == 1 and  $this->grid[4][0] == 1){return 1;}
+        if ($this->grid[1][3] == 2 and  $this->grid[2][2] == 2 and  $this->grid[3][1] == 2 and  $this->grid[4][0] == 2){return 2;}
+        if ($this->grid[4][3] == 1 and  $this->grid[3][2] == 1 and  $this->grid[2][1] == 1 and  $this->grid[1][0] == 1){return 1;}
+        if ($this->grid[4][3] == 2 and  $this->grid[3][2] == 2 and  $this->grid[2][1] == 2 and  $this->grid[1][0] == 2){return 2;}
+        if ($this->grid[1][4] == 1 and  $this->grid[2][3] == 1 and  $this->grid[3][2] == 1 and  $this->grid[4][1] == 1){return 1;}
+        if ($this->grid[1][4] == 2 and  $this->grid[2][3] == 2 and  $this->grid[3][2] == 2 and  $this->grid[4][1] == 2){return 2;}
+        if ($this->grid[4][4] == 1 and  $this->grid[3][3] == 1 and  $this->grid[2][2] == 1 and  $this->grid[1][1] == 1){return 1;}
+        if ($this->grid[4][4] == 2 and  $this->grid[3][3] == 2 and  $this->grid[2][2] == 2 and  $this->grid[1][1] == 2){return 2;}
+        if ($this->grid[1][5] == 1 and  $this->grid[2][4] == 1 and  $this->grid[3][3] == 1 and  $this->grid[4][2] == 1){return 1;}
+        if ($this->grid[1][5] == 2 and  $this->grid[2][4] == 2 and  $this->grid[3][3] == 2 and  $this->grid[4][2] == 2){return 2;}
+        if ($this->grid[4][5] == 1 and  $this->grid[3][4] == 1 and  $this->grid[2][3] == 1 and  $this->grid[1][2] == 1){return 1;}
+        if ($this->grid[4][5] == 2 and  $this->grid[3][4] == 2 and  $this->grid[2][3] == 2 and  $this->grid[1][2] == 2){return 2;}
+        if ($this->grid[2][3] == 1 and  $this->grid[3][2] == 1 and  $this->grid[4][1] == 1 and  $this->grid[5][0] == 1){return 1;}
+        if ($this->grid[2][3] == 2 and  $this->grid[3][2] == 2 and  $this->grid[4][1] == 2 and  $this->grid[5][0] == 2){return 2;}
+        if ($this->grid[5][3] == 1 and  $this->grid[4][2] == 1 and  $this->grid[3][1] == 1 and  $this->grid[2][0] == 1){return 1;}
+        if ($this->grid[5][3] == 2 and  $this->grid[4][2] == 2 and  $this->grid[3][1] == 2 and  $this->grid[2][0] == 2){return 2;}
+        if ($this->grid[2][4] == 1 and  $this->grid[3][3] == 1 and  $this->grid[4][2] == 1 and  $this->grid[5][1] == 1){return 1;}
+        if ($this->grid[2][4] == 2 and  $this->grid[3][3] == 2 and  $this->grid[4][2] == 2 and  $this->grid[5][1] == 2){return 2;}
+        if ($this->grid[5][4] == 1 and  $this->grid[4][3] == 1 and  $this->grid[3][2] == 1 and  $this->grid[2][1] == 1){return 1;}
+        if ($this->grid[5][4] == 2 and  $this->grid[4][3] == 2 and  $this->grid[3][2] == 2 and  $this->grid[2][1] == 2){return 2;}
+        if ($this->grid[2][5] == 1 and  $this->grid[3][4] == 1 and  $this->grid[4][3] == 1 and  $this->grid[5][2] == 1){return 1;}
+        if ($this->grid[2][5] == 2 and  $this->grid[3][4] == 2 and  $this->grid[4][3] == 2 and  $this->grid[5][2] == 2){return 2;}
+        if ($this->grid[5][5] == 1 and  $this->grid[4][4] == 1 and  $this->grid[3][3] == 1 and  $this->grid[2][2] == 1){return 1;}
+        if ($this->grid[5][5] == 2 and  $this->grid[4][4] == 2 and  $this->grid[3][3] == 2 and  $this->grid[2][2] == 2){return 2;}
+        if ($this->grid[3][3] == 1 and  $this->grid[4][2] == 1 and  $this->grid[5][1] == 1 and  $this->grid[6][0] == 1){return 1;}
+        if ($this->grid[3][3] == 2 and  $this->grid[4][2] == 2 and  $this->grid[5][1] == 2 and  $this->grid[6][0] == 2){return 2;}
+        if ($this->grid[6][3] == 1 and  $this->grid[5][2] == 1 and  $this->grid[4][1] == 1 and  $this->grid[3][0] == 1){return 1;}
+        if ($this->grid[6][3] == 2 and  $this->grid[5][2] == 2 and  $this->grid[4][1] == 2 and  $this->grid[3][0] == 2){return 2;}
+        if ($this->grid[3][4] == 1 and  $this->grid[4][3] == 1 and  $this->grid[5][2] == 1 and  $this->grid[6][1] == 1){return 1;}
+        if ($this->grid[3][4] == 2 and  $this->grid[4][3] == 2 and  $this->grid[5][2] == 2 and  $this->grid[6][1] == 2){return 2;}
+        if ($this->grid[6][4] == 1 and  $this->grid[5][3] == 1 and  $this->grid[4][2] == 1 and  $this->grid[3][1] == 1){return 1;}
+        if ($this->grid[6][4] == 2 and  $this->grid[5][3] == 2 and  $this->grid[4][2] == 2 and  $this->grid[3][1] == 2){return 2;}
+        if ($this->grid[3][5] == 1 and  $this->grid[4][4] == 1 and  $this->grid[5][3] == 1 and  $this->grid[6][2] == 1){return 1;}
+        if ($this->grid[3][5] == 2 and  $this->grid[4][4] == 2 and  $this->grid[5][3] == 2 and  $this->grid[6][2] == 2){return 2;}
+        if ($this->grid[6][5] == 1 and  $this->grid[5][4] == 1 and  $this->grid[4][3] == 1 and  $this->grid[3][2] == 1){return 1;}
+        if ($this->grid[6][5] == 2 and  $this->grid[5][4] == 2 and  $this->grid[4][3] == 2 and  $this->grid[3][2] == 2){return 2;}
+        return null;
     }
 }

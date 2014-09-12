@@ -52,11 +52,22 @@ class APIController extends Controller
 	$user = new User();
 	$user->setTeam($teamNumber);
 
+	// Add the user to the current game
+	$entityManager = $this->getDoctrine()->getManager();
+	$repo = $entityManager->getRepository("HackathonGameBundle:Game");
+	$game = $repo->findCurrentGame();
+	$game->addUser($user);
+
 	$entityManager = $this->getDoctrine()->getManager();
 	$entityManager->persist($user);
 	$entityManager->flush();
 
-	return $this->createObjectResponse($user);
+	$data = array(
+	    "id" => $user->getId(),
+	    "team" => $user->getTeam(),
+	);
+	
+	return $this->createObjectResponse($data);
     }
 
     /**
