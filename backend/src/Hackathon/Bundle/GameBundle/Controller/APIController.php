@@ -71,18 +71,24 @@ class APIController extends Controller
     }
 
     /**
-     * @Route("game/move")
+     * @Route("game/move/user/{id}")
+     * @ParamConverter("user", class="HackathonGameBundle:User")
      * @Method({"GET"})
      */
-    public function getMovesAction()
+    public function getMovesAction( User $user )
     {
 	$entityManager = $this->getDoctrine()->getManager();
 	$repo = $entityManager->getRepository("HackathonGameBundle:Game");
 	$game = $repo->findCurrentGame();
 
-	$data = $this->createMoveData($game);
-	$data["isFinished"] = $game->getIsFinished();
+	$data = array("moves" => array());
+	if ($game->getCurrentTeam() == $user->getTeam()) {
+	    // The user has actions in this round 
+	    $data = $this->createMoveData($game);
+	}
 
+	// Add isFinished variable
+	$data["isFinished"] = $game->getIsFinished();
 	return $this->createObjectResponse($data);
     }
 
