@@ -71,7 +71,7 @@
     var setTimer = function(){
         appState.time.timeoutId = setTimeout(function(){
             appState.time.remainingTime = appState.time.remainingTime - 1;
-            if( appState.time.remainingTime > 0 )
+            if( appState.time.remainingTime >= 1 )
                 setTimer();
             else
             {
