@@ -10,7 +10,7 @@
         time:{
             serverCurrentTime: 'unixtimestring', //Unix timestamp
             clientCurrentTime: 'unixtimestring', //Unix timestamp
-            remainingTime: 180, //Seconds
+            remainingTime: 60, //Seconds
             timeoutId: null
         }
     };
@@ -107,9 +107,9 @@
         $.get(
             BASE_URL + URL_GAME_JOIN,
             function(data){
-                setRemainingTime(data.currentMoveTTL);
+                //setRemainingTime(data.currentMoveTTL);
                 console.log(data);
-                changeState();
+                //changeState();
             }
         );
     }
@@ -138,6 +138,7 @@
 
     var main = function() {
         getTeams();
+        setTimer();
     }
 
     main();
