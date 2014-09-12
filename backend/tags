@@ -35,6 +35,7 @@ WelcomeController	src/Acme/DemoBundle/Controller/WelcomeController.php	/^class W
 __construct	src/Acme/DemoBundle/EventListener/ControllerListener.php	/^    public function __construct(DemoExtension $extension)$/;"	f	class:Acme\DemoBundle\EventListener::ControllerListener	access:public	signature:(DemoExtension $extension)
 __construct	src/Acme/DemoBundle/Twig/Extension/DemoExtension.php	/^    public function __construct(\\Twig_LoaderInterface $loader)$/;"	f	class:Acme\DemoBundle\Twig\Extension::DemoExtension	access:public	signature:(Twig_LoaderInterface $loader)
 __construct	src/Hackathon/Bundle/GameBundle/Entity/Game.php	/^    public function __construct() {$/;"	f	class:Hackathon\Bundle\GameBundle\Entity::Game
+__construct	src/Hackathon/Bundle/GameBundle/GameLogic/ConnectFour.php	/^    public function __construct(Game $game) {$/;"	f	class:Hackathon\Bundle\GameBundle\Entity::ConnectFour
 buildForm	src/Acme/DemoBundle/Form/ContactType.php	/^    public function buildForm(FormBuilderInterface $builder, array $options)$/;"	f	class:Acme\DemoBundle\Form::ContactType	access:public	signature:(FormBuilderInterface $builder, array $options)
 configure	src/Acme/DemoBundle/Command/HelloWorldCommand.php	/^    protected function configure()$/;"	f	class:Acme\DemoBundle\Command::HelloWorldCommand	access:protected	signature:()
 contactAction	src/Acme/DemoBundle/Controller/DemoController.php	/^    public function contactAction(Request $request)$/;"	f	class:Acme\DemoBundle\Controller::DemoController	access:public	signature:(Request $request)
