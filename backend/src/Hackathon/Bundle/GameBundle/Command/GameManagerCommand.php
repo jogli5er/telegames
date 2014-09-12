@@ -29,7 +29,10 @@ class GameManagerCommand extends ContainerAwareCommand
 	if ($timeTillRoundFinished <= 0) {
 	    // The round ended! Let's start a new one!
 	    $this->startNewTurn();
+	    echo "Starting new round";
 	}
+
+	echo "Ended update\n";
     }
 }
 
