@@ -78,12 +78,6 @@
     }
 
 //VIEW CLASSES
-    var getNextView = function(){
-        if(appState.currentView = 'join')
-            getTeams();
-        else
-            getNext();
-    }
 
     var getNext = function(){
         console.log("Get next view from server");
@@ -92,8 +86,10 @@
             function(data){
                 if(data.isFinished)
                     appState.nextView  = 'join';
-                else
+                else{
+                    if(data.currentTeamId == appState.selectedTeam)
                     appState.nextView  = 'move';
+                }
                 console.log(data);
             }
         );
@@ -108,8 +104,8 @@
             BASE_URL + URL_GAME_JOIN,
             function(data){
                 console.log(data.teams);
-             //   changeState();
-             //   setRemainingTime(data.currentMoveTTL);
+                changeState(data);
+                setRemainingTime(data.currentMoveTTL);
             }
         );
     }
@@ -120,18 +116,18 @@
 
     $(document).on('click', '.teamSelection button', function() {
         var selectedTeam = $(this).attr('data-value');
+        appState.selectedTeam = selectedTeam;
+        var jqxhr = $.post( BASE_URL + URL_GAME_JOIN, function(data){
+            appState.nextView = 'move';
+            getNext();
+        });
 
-        // TODO: POST game/join
-
-        appState.nextView = 'move';
 
     });
 
 
     $(document).on('click', '.moveSelection button', function() {
         var selectedMove = $(this).attr('data-value');
-
-        // TODO: POST game/move
 
         alert('Oh, ein überragender Zug!');
     });
