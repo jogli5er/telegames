@@ -39,6 +39,9 @@ class TeletextFormatter
         $str  = PHP_EOL;
         $str .= '          T E L E G A M E' . PHP_EOL;
         $str .= '======================================' . PHP_EOL;
+        $str .= '    > Join on www.{IP_OF_SANDRO} <' . PHP_EOL;
+        $str .= PHP_EOL;
+        $str .= PHP_EOL;
         $str .= PHP_EOL;
         $str .= '      It\'s ' . $this->playerOnTurn . '\'s move (not ' . $this->playerOnHold . '\'s)' . PHP_EOL;
         $str .= PHP_EOL;
