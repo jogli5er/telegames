@@ -10,7 +10,7 @@
         time:{
             serverCurrentTime: 'unixtimestring', //Unix timestamp
             clientCurrentTime: 'unixtimestring', //Unix timestamp
-            remainingTime: 60, //Seconds
+            remainingTime: 20, //Seconds
             timeoutId: null
         }
     };
@@ -20,16 +20,19 @@
 
         if (appState.nextView === 'join') {
 
+            appState.currentView = 'join';
             // TODO: GET game/join
 
             var html = '<div class="teamSelection">';
             html += '<h2>Choose your team</h2>';
             html += '<div class="teamSelectionBtnGroup">';
+            html += '<div class="btn-group" id="teamSelectionButtons">';
             var t;
             for (var i = 0, len = data.teams.length; i < len; i++) {
                 t = data.teams[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + t.id + '">' + t.name + '</button>' + "\n";
             }
+            html += '</div>';
             html += '</div>';
             html += '</div>';
 
@@ -40,35 +43,38 @@
         }
 
         else if (appState.nextView === 'move') {
+            appState.currentView  = 'move';
             var html = '<div class="moveSelection">';
             html += '<h2>Choose your move</h2>';
-            html += '<div class="moveSelectionBtnGroup">'
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
+                html += '<div class="moveSelectionBtnGroup">'
                 m = data.moves[i];
-                html += '<div class="btn-group">';
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>' + "\n";
                 html += '</div>';
             }
-            html += '</div>';
             html += '</div>';
 
             container.innerHTML = html;
         }
         else if (appState.nextView === 'waiting'){
-
+            appState.currentView = 'waiting';
+            var html = '<div class="waiting">';
+            html += '<h4>Wait until the other team finished this turn</h4>';
+            container.innerHTML = html;
         }
     }
 
 //TIMING CLASSES
     var setTimer = function(){
         appState.time.timeoutId = setTimeout(function(){
-            console.log("remainingTime: " + appState.time.remainingTime);
+            console.log(appState.time.remainingTime);
             appState.time.remainingTime = appState.time.remainingTime - 1;
             if( appState.time.remainingTime > 0 )
                 setTimer();
             else
                 getNext();
+            $(".timer").html(appState.time.timeoutId);
         },1000);
     }
 
@@ -87,10 +93,13 @@
                 if(data.isFinished)
                     appState.nextView  = 'join';
                 else{
-                    if(data.currentTeamId == appState.selectedTeam)
-                    appState.nextView  = 'move';
+                /*    if(data.currentTeamId == appState.selectedTeam)
+                        appState.nextView  = 'move';
+                    else
+                        appState.nextView = 'waiting';*/
+                    appState.nextView = 'move';
                 }
-                console.log(data);
+                changeState(data);
             }
         );
     }
@@ -100,6 +109,7 @@
     }
 
     var getTeams = function(){
+        appState.nextView = 'join';
         $.get(
             BASE_URL + URL_GAME_JOIN,
             function(data){
@@ -113,13 +123,16 @@
 
     $(document).on('click', '.teamSelection button', function() {
         var selectedTeam = $(this).attr('data-value');
+        $('#teamSelectionButtons').hide();
+        var html = '<div class="roundStartsIn">';
+        html += 'Next round starts in: <span class="timer"></span></div>';
+        container.append = html; 
         appState.selectedTeam = selectedTeam;
         var jqxhr = $.post( BASE_URL + URL_GAME_JOIN, selectedTeam, function(data){
             appState.nextView = 'move';
+           // setRemainingTime(data.currentMoveTTL);
             setTimer();
         });
-
-
     });
 
 
@@ -131,7 +144,6 @@
 
     var main = function() {
         getTeams();
-        setTimer();
     }
 
     main();
