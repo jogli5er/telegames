@@ -1,11 +1,19 @@
 (function(w, $) {
-
-    var state = 'join';
+    var appState = {
+        sessionId: 'somewrongid',
+        currentView: 'join',
+        nextView: 'move',
+        time:{
+            serverCurrentTime: 'unixtimestring', //Unix timestamp
+            clientCurrentTime: 'unixtimestring', //Unix timestamp
+            remainingTime: 'secondsInteger' //Seconds
+        }
+    };
     var container = w.document.getElementById('mainContainer');
 
     var changeState = function() {
 
-        if (state === 'join') {
+        if (appState.currentView === 'join') {
 
             // TODO: GET game/join
             var data = {
@@ -17,11 +25,13 @@
 
             var html = '<div class="teamSelection">';
             html += '<h2>Choose your team</h2>';
+            html += '<div class="teamSelectionBtnGroup">';
             var t;
             for (var i = 0, len = data.teams.length; i < len; i++) {
                 t = data.teams[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + t.id + '">' + t.name + '</button>' + "\n";
             }
+            html += '</div>';
             html += '</div>';
 
             container.innerHTML = html;
@@ -47,15 +57,26 @@
 
             var html = '<div class="moveSelection">';
             html += '<h2>Choose your move</h2>';
+            html += '<div class="moveSelectionBtnGroup">'
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 m = data.moves[i];
+                html += '<div class="btn-group">';
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>' + "\n";
+                html += '</div>';
             }
+            html += '</div>';
             html += '</div>';
 
             container.innerHTML = html;
         }
+    }
+
+//TIMING CLASSES
+    var setRemainingTime = function(){
+        setTimeout(function(){
+            appState.time.remainingTime
+        },1000);
     }
 
 

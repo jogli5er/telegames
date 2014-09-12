@@ -1,5 +1,5 @@
 /* Telegames CSS */
-.teamSelectionBtnWrap {
+.teamSelection {
 	text-align: center;
 }
 .teamSelectionBtnGroup {
@@ -8,10 +8,10 @@
 	width: inherit;
 	display: inline-block;
 }
-.optionSelectionBtnWrap {
+.moveSelection {
 
 }
-.optionSelectionBtnGroup{
+.moveSelectionBtnGroup{
 
 }
 .statsView{
