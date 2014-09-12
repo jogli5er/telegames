@@ -108,7 +108,8 @@
             BASE_URL + URL_GAME_JOIN,
             function(data){
                 setRemainingTime(data.currentMoveTTL);
-                changeState
+                console.log(data);
+                changeState();
             }
         );
     }
