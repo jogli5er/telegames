@@ -110,14 +110,11 @@
         );
     }
 
-    var postTeam = function(){
-
-    }
 
     $(document).on('click', '.teamSelection button', function() {
         var selectedTeam = $(this).attr('data-value');
         appState.selectedTeam = selectedTeam;
-        var jqxhr = $.post( BASE_URL + URL_GAME_JOIN, function(data){
+        var jqxhr = $.post( BASE_URL + URL_GAME_JOIN, selectedTeam, function(data){
             appState.nextView = 'move';
             setTimer();
         });
