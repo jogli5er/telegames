@@ -1,27 +1,28 @@
 (function(w, $) {
+    var BASE_URL = 'http://10.201.3.43/sites/telegames/backend/web/app_dev.php';
+    var URL_GAME_JOIN = 'game/join';
+    var URL_GAME_MOVE = 'game/move';
     var appState = {
         sessionId: 'somewrongid',
-        currentView: 'join',
-        nextView: 'move',
+        currentView: 'join', //there is another view for not 
+        nextView: 'join',
+        selectedTeamId: 0,
         time:{
             serverCurrentTime: 'unixtimestring', //Unix timestamp
             clientCurrentTime: 'unixtimestring', //Unix timestamp
-            remainingTime: 'secondsInteger' //Seconds
+            remainingTime: 180, //Seconds
+            timeoutId: null
         }
     };
     var container = w.document.getElementById('mainContainer');
 
     var changeState = function() {
 
-        if (appState.currentView === 'join') {
+        if (appState.nextView === 'join') {
 
             // TODO: GET game/join
-            var data = {
-                "teams": [
-                    { "id": 0, "name": "red" },
-                    { "id": 1, "name": "blue" },
-                ]
-            };
+
+            data = getTeams();
 
             var html = '<div class="teamSelection">';
             html += '<h2>Choose your team</h2>';
@@ -40,21 +41,9 @@
 
         }
 
-        if (state === 'move') {
-            var data = {
-                "moves": [
-                    { "id": 0, "name": "Column 1" },
-                    { "id": 1, "name": "Column 2" },
-                    { "id": 2, "name": "Column 3" },
-                    { "id": 3, "name": "Column 4" },
-                    { "id": 4, "name": "Column 5" },
-                    { "id": 5, "name": "Column 6" },
-                    { "id": 6, "name": "Column 7" },
-                    { "id": 7, "name": "Column 8" }
-                ],
-                "currentMoveTTL": 23
-            }
-
+        else if (appState.nextView === 'move') {
+            data = getNext();
+            setTimer();
             var html = '<div class="moveSelection">';
             html += '<h2>Choose your move</h2>';
             html += '<div class="moveSelectionBtnGroup">'
@@ -70,23 +59,49 @@
 
             container.innerHTML = html;
         }
+        else if (appState.nextView === 'waiting'){
+
+        }
     }
 
 //TIMING CLASSES
-    var setRemainingTime = function(){
-        setTimeout(function(){
-            appState.time.remainingTime
+    var setTimer = function(){
+        appState.time.timeoutId = setTimeout(function(){
+            console.log("remainingTime: " + appState.time.remainingTime);
+            appState.time.remainingTime = appState.time.remainingTime - 1;
+            if( appState.time.remainingTime > 0 )
+                setTimer();
+            else
+                getNext();
         },1000);
     }
 
+    var setRemainingTime = function(newRemainer){
+        appState.time.timeoutId.clearTimeout();
+        appState.time.remainingTime = newRemainer;
+    }
 
+    var getNext = function(){
+        console.log("Get next view from server");
+
+    }
+
+    var getTeams = function(){
+        $.get(
+            BASE_URL + URL_GAME_JOIN,
+            function(data){
+                setRemainingTime(data.currentMoveTTL);
+                return data;
+            }
+        );
+    }
 
     $(document).on('click', '.teamSelection button', function() {
         var selectedTeam = $(this).attr('data-value');
 
         // TODO: POST game/join
 
-        state = 'move';
+        appState.nextView = 'move';
         changeState();
 
     });
