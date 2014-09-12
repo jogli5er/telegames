@@ -55,9 +55,7 @@ class Game
     public function __construct() 
     {
 	$this->created = new \DateTime();
-	$turnEndTime = new \DateTime();
-	$turnEndTime->add(new \DateInterval("PT". self::$turnLength ."S"));
-	$this->nextTurnEndTime = $turnEndTime;
+	$this->startNewTurn();
 
 	$this->users = new ArrayCollection();
 	$this->turns = new ArrayCollection();
@@ -127,6 +125,14 @@ class Game
     {
 	$this->turns[] =  $turn;
 	$turn->setGame($this);
+    }
+
+    public function startNewTurn()
+    {
+	// We update the nextTurnEndTime
+	$turnEndTime = new \DateTime();
+	$turnEndTime->add(new \DateInterval("PT". self::$turnLength ."S"));
+	$this->nextTurnEndTime = $turnEndTime;
     }
 
     /*
