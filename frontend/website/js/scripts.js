@@ -47,7 +47,7 @@
             var html = '<div class="moveSelection">';
             html += '<h2>Choose your move</h2>';
             html += '<div class="roundStartsIn">';
-            html += 'Next round starts in: <span class="timer"></span></div>';
+            html += 'Next turn starts in: <span class="timer"></span></div>';
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 html += '<div class="moveSelectionBtnGroup">'
@@ -75,7 +75,7 @@
                 setTimer();
             else
             {
-                if(appState.nextState==='join')
+                if(appState.nextView==='join')
                     getTeams();
                 else
                     getNext();
@@ -130,7 +130,7 @@
         var selectedTeam = $(this).attr('data-value');
         $('#teamSelectionButtons').hide();
         var html = '<div class="roundStartsIn">';
-        html += 'Next round starts in: <span class="timer"></span></div>';
+        html += 'Next turn starts in: <span class="timer"></span></div>';
         $('.teamSelection').append(html); 
         appState.selectedTeam = selectedTeam;
         var jqxhr = $.post( BASE_URL + URL_GAME_JOIN, selectedTeam, function(data){
