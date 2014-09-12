@@ -49,11 +49,17 @@
             html += '<h2>Choose your move</h2>';
             html += '<div class="roundStartsIn">';
             html += 'Next turn starts in: <span class="timer"></span></div>';
+            html += 'Total Users: ';
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 html += '<div class="moveSelectionBtnGroup">'
                 m = data.moves[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>' + "\n";
+ /*               html += '<div class="progress">';
+                html += '<div class="progress-bar" role="progressbar" aria-valuenow="'+getPercentages();+'" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">';
+                html += getPercentages;
+                html += '</div>';
+                html += '</div>';*/
                 html += '</div>';
             }
             html += '</div>';
@@ -97,8 +103,12 @@
         $.get(
             BASE_URL + URL_GAME_MOVE,
             function(data){
-                if(data.isFinished)
+                if(data.isFinished) //data.isFinished
+                {
                     appState.nextView  = 'join';
+                    getTeams();
+                    return ;
+                }
                 else{
                 /*    if(data.currentTeamId == appState.selectedTeam)
                         appState.nextView  = 'move';
@@ -111,6 +121,10 @@
                 setTimer();
             }
         );
+    }
+
+    var getPercentages = function(){
+        return 60;
     }
 
     var getTeams = function(){

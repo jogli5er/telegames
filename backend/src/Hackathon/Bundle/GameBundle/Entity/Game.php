@@ -16,11 +16,10 @@ class Game
     static public $turnLength = 30;
 
     /**
-     * @var isFinished
+     * @var boolean
      *
      * @ORM\Column(name="isFinished", type="boolean")
      */
-
     private $isFinished = true;
 
     /**
@@ -31,6 +30,14 @@ class Game
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="firstTeam", type="integer")
+     */
+    private $firstTeam;
+
 
     /**
      * @var string
@@ -64,6 +71,7 @@ class Game
     public function __construct() 
     {
 	$this->created = new \DateTime();
+	$this->firstTeam = rand(1,2);
 	$this->startNewTurn();
 
 	$this->users = new ArrayCollection();
@@ -188,7 +196,24 @@ class Game
     {
         return $this->isFinished;
     }
-    
+     
+    /*
+     * Getter for firstTeam
+     */
+    public function getFirstTeam()
+    {
+        return $this->firstTeam;
+    }
+
+    /*
+     * Getter for getCurrentTeam
+     */
+    public function getCurrentTeam()
+    {
+        $turns = count($this->getTurns());
+        return ($turns+$this->getFirstTeam()) % 2 == 0 ? 2 : 1;
+    }
+
     /**
      * returns the time in seconds till the next round ends
      */

@@ -8,10 +8,25 @@
     html, body, .page { height: 100%; }
     body { margin: 0; }
     .page { background: #080808;  }
-    .page .teletext { padding-left: 30px; background: black; font-size: 28px; line-height: 1em; color: white; font-family: Cousine, monospace; white-space: pre; letter-spacing: 0.25em; }
+    .page .teletext { padding-left: 30px; background: black; font-size: 28px; line-height: 1em; color: white; font-family: Cousine, monospace; white-space: pre; letter-spacing: 0.25em; width: 32em; margin: auto; }
 </style>
 
 <div class="page">
     <div class="teletext">{{ text }}</div>
 </div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+    // Ugly and awful hack to refresh the page without blinking
+    setTimeout(function() {
+        $.get(location.href, function(d) {
+            var pos = d.indexOf('<body>');
+            d = d.substr(pos + 6)
+            d = d.substr(0, d.length - 16);
+            $('body').html($.trim(d));
+        });
+    }, 3000);
+
+</script>
 {% endblock %}
