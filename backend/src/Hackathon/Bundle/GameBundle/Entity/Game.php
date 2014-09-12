@@ -16,6 +16,14 @@ class Game
     static public $turnLength = 30;
 
     /**
+     * @var isFinished
+     *
+     * @ORM\Column(name="isFinished", type="boolean")
+     */
+
+    private $isFinished = true;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -162,8 +170,24 @@ class Game
     {
         return $this->nextTurnEndTime;
     }
-    
 
+    /*
+     * Setter for isFinished
+     */
+    public function setIsFinished($isFinished)
+    {
+        $this->isFinished = $isFinished;
+        return $this;
+    }
+     
+    /*
+     * Getter for isFinished
+     */
+    public function getIsFinished()
+    {
+        return $this->isFinished;
+    }
+    
     /**
      * returns the time in seconds till the next round ends
      */
