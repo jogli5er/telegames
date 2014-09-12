@@ -10,19 +10,17 @@
         time:{
             serverCurrentTime: 'unixtimestring', //Unix timestamp
             clientCurrentTime: 'unixtimestring', //Unix timestamp
-            remainingTime: 180, //Seconds
+            remainingTime: 60, //Seconds
             timeoutId: null
         }
     };
     var container = w.document.getElementById('mainContainer');
 
-    var changeState = function() {
+    var changeState = function(data) {
 
         if (appState.nextView === 'join') {
 
             // TODO: GET game/join
-
-            data = getTeams();
 
             var html = '<div class="teamSelection">';
             html += '<h2>Choose your team</h2>';
@@ -42,8 +40,6 @@
         }
 
         else if (appState.nextView === 'move') {
-            data = getNext();
-            setTimer();
             var html = '<div class="moveSelection">';
             html += '<h2>Choose your move</h2>';
             html += '<div class="moveSelectionBtnGroup">'
@@ -98,6 +94,7 @@
                     appState.nextView  = 'join';
                 else
                     appState.nextView  = 'move';
+                console.log(data);
             }
         );
     }
@@ -110,14 +107,15 @@
         $.get(
             BASE_URL + URL_GAME_JOIN,
             function(data){
-                setRemainingTime(data.currentMoveTTL);
-                return data;
+                console.log(data.teams);
+             //   changeState();
+             //   setRemainingTime(data.currentMoveTTL);
             }
         );
     }
 
     var postTeam = function(){
-        
+
     }
 
     $(document).on('click', '.teamSelection button', function() {
@@ -126,7 +124,6 @@
         // TODO: POST game/join
 
         appState.nextView = 'move';
-        changeState();
 
     });
 
@@ -139,7 +136,11 @@
         alert('Oh, ein überragender Zug!');
     });
 
+    var main = function() {
+        getTeams();
+        setTimer();
+    }
 
-    changeState();
+    main();
 
 }(window, jQuery));
