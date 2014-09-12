@@ -95,4 +95,14 @@ class GameTurn
     {
         return $this->move;
     }
+
+    /*
+     * Setter for game
+     */
+    public function setGame($game)
+    {
+        $this->game = $game;
+        return $this;
+    }
+    
 }

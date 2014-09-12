@@ -39,8 +39,10 @@ class Game
      */
     private $users;
 
-    public function __construct() {
-	$this->features = new ArrayCollection();
+    public function __construct() 
+    {
+	$this->users = new ArrayCollection();
+	$this->turns = new ArrayCollection();
     }
 
     /**
@@ -74,5 +76,38 @@ class Game
     public function getType()
     {
         return $this->type;
+    }
+
+    /*
+     * Getter for turns
+     */
+    public function getTurns()
+    {
+        return $this->turns->toArray();
+    }
+
+    /**
+     * Creats and adds a turn. 
+     *
+     * Returns the created turn. You need to persist it.
+     */
+    public function addTurnWithNumber($column)
+    {
+	$turn = new GameTurn();
+	$turn->setMove($column);
+	$this->addTurn($turn);
+
+	return $turn;
+    }
+
+    /**
+     * Add a turn. 
+     *
+     * Inverse side will be set.
+     */
+    public function addTurn($turn)
+    {
+	$this->turns[] =  $turn;
+	$turn->setGame($this);
     }
 }
