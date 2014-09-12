@@ -35,7 +35,8 @@ Response:
             { "id": 2, "name": "Column 3" },
         ],
         "currentMoveTTL": 23,
-        "currentTeamId":"givesUsBackTheCurrentPlayingTeam"
+        "currentTeamId":"givesUsBackTheCurrentPlayingTeam",
+        "isFinished" : false
     }
 
 
