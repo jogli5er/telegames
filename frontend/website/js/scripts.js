@@ -10,7 +10,7 @@
         time:{
             serverCurrentTime: 'unixtimestring', //Unix timestamp
             clientCurrentTime: 'unixtimestring', //Unix timestamp
-            remainingTime: 60, //Seconds
+            remainingTime: 1, //Seconds
             timeoutId: null
         }
     };
@@ -68,12 +68,12 @@
 //TIMING CLASSES
     var setTimer = function(){
         appState.time.timeoutId = setTimeout(function(){
-            console.log("remainingTime: " + appState.time.remainingTime);
             appState.time.remainingTime = appState.time.remainingTime - 1;
             if( appState.time.remainingTime > 0 )
                 setTimer();
             else
                 getNext();
+            $(".timer").html(appState.time.timeoutId);
         },1000);
     }
 
@@ -122,9 +122,14 @@
 
     $(document).on('click', '.teamSelection button', function() {
         var selectedTeam = $(this).attr('data-value');
+        $(this).hide();
+        var html = '<div class="roundStartsIn">';
+        html += 'Next round starts in: <span class="timer"></span></div>';
+        container.innerHTML(html); 
         appState.selectedTeam = selectedTeam;
         var jqxhr = $.post( BASE_URL + URL_GAME_JOIN, selectedTeam, function(data){
             appState.nextView = 'move';
+           // setRemainingTime(data.currentMoveTTL);
             setTimer();
         });
     });
