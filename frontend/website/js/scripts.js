@@ -101,7 +101,7 @@
                 {
                     appState.nextView  = 'join';
                     getTeams();
-                    break;
+                    return ;
                 }
                 else{
                 /*    if(data.currentTeamId == appState.selectedTeam)
