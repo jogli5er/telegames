@@ -22,13 +22,6 @@ class User
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    private $name;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="team", type="integer")
@@ -40,7 +33,7 @@ class User
      *
      * @ORM\Column(name="selection", type="integer")
      */
-    private $selection;
+    private $selection = -1;
 
     /**
      * @ORM\ManyToOne(targetEntity="Game", inversedBy="users")
@@ -55,29 +48,6 @@ class User
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return User
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
