@@ -1,0 +1,3 @@
+hackathon_game_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: HackathonGameBundle:Default:index }

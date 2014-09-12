@@ -1,0 +1,7 @@
+parameters:
+#    hackathon_game.example.class: Hackathon\Bundle\GameBundle\Example
+
+services:
+#    hackathon_game.example:
+#        class: %hackathon_game.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
