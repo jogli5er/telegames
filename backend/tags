@@ -29,6 +29,7 @@ GameTurnRepository	src/Hackathon/Bundle/GameBundle/Entity/GameTurnRepository.php
 HackathonGameBundle	src/Hackathon/Bundle/GameBundle/HackathonGameBundle.php	/^class HackathonGameBundle extends Bundle$/;"	c	namespace:Hackathon\Bundle\GameBundle	inherits:Bundle
 HackathonGameExtension	src/Hackathon/Bundle/GameBundle/DependencyInjection/HackathonGameExtension.php	/^class HackathonGameExtension extends Extension$/;"	c	namespace:Hackathon\Bundle\GameBundle\DependencyInjection	inherits:Extension
 Hackathon\Bundle\GameBundle	src/Hackathon/Bundle/GameBundle/HackathonGameBundle.php	/^<?php$/;"	n
+Hackathon\Bundle\GameBundle\Command	src/Hackathon/Bundle/GameBundle/Command/TestCommand.php	/^<?php $/;"	n
 Hackathon\Bundle\GameBundle\Controller	src/Hackathon/Bundle/GameBundle/Controller/APIController.php	/^<?php$/;"	n
 Hackathon\Bundle\GameBundle\Controller	src/Hackathon/Bundle/GameBundle/Controller/DefaultController.php	/^<?php$/;"	n
 Hackathon\Bundle\GameBundle\DependencyInjection	src/Hackathon/Bundle/GameBundle/DependencyInjection/Configuration.php	/^<?php$/;"	n
@@ -44,6 +45,7 @@ Hackathon\Bundle\GameBundle\Tests\Controller	src/Hackathon/Bundle/GameBundle/Tes
 Hackathon\Bundle\GameBundle\Tests\Controller	src/Hackathon/Bundle/GameBundle/Tests/Controller/DefaultControllerTest.php	/^<?php$/;"	n
 SerializationBaseTest	src/FF/CommonBundle/Tests/SerializationBaseTest.php	/^class SerializationBaseTest extends BaseTest$/;"	c	namespace:FF\CommonBundle\Tests	inherits:BaseTest
 Table	src/FF/CommonBundle/View/Table.php	/^class Table $/;"	c	namespace:FF\CommonBundle\View
+TestCommand	src/Hackathon/Bundle/GameBundle/Command/TestCommand.php	/^class TestCommand extends ContainerAwareCommand$/;"	c	namespace:Hackathon\Bundle\GameBundle\Command
 User	src/Hackathon/Bundle/GameBundle/Entity/User.php	/^class User$/;"	c	namespace:Hackathon\Bundle\GameBundle\Entity
 UserRepository	src/Hackathon/Bundle/GameBundle/Entity/UserRepository.php	/^class UserRepository extends EntityRepository$/;"	c	namespace:Hackathon\Bundle\GameBundle\Entity	inherits:EntityRepository
 __construct	src/FF/CommonBundle/View/Table.php	/^	public function __construct()$/;"	f	class:FF\CommonBundle\View::Table	access:public	signature:()
@@ -54,10 +56,12 @@ __toString	src/FF/CommonBundle/View/Table.php	/^	public function __toString()$/;
 addColumn	src/FF/CommonBundle/View/Table.php	/^	public function addColumn($column)$/;"	f	class:FF\CommonBundle\View::Table	access:public	signature:($column)
 attributes	src/FF/CommonBundle/View/Table.php	/^	protected $attributes;$/;"	v	class:FF\CommonBundle\View::Table	access:protected
 columns	src/FF/CommonBundle/View/Table.php	/^	protected $columns;$/;"	v	class:FF\CommonBundle\View::Table	access:protected
+configure	src/Hackathon/Bundle/GameBundle/Command/TestCommand.php	/^    protected function configure()$/;"	f	class:Hackathon\Bundle\GameBundle\Command::TestCommand
 createErrorResponse	src/FF/CommonBundle/Controller/ApiController.php	/^    protected function createErrorResponse($title, $description = null, $statusCode = JsonResponse::HTTP_BAD_REQUEST, $errorCode = 0, $documentationLink = null)$/;"	f	class:FF\CommonBundle\Controller::ApiController	access:protected	signature:($title, $description = null, $statusCode = JsonResponse:: HTTP_BAD_REQUEST, $errorCode = 0, $documentationLink = null)
 createObjectResponse	src/FF/CommonBundle/Controller/ApiController.php	/^    protected function createObjectResponse($object, $statusCode = JsonResponse::HTTP_OK, $serializationContext = null)$/;"	f	class:FF\CommonBundle\Controller::ApiController	access:protected	signature:($object, $statusCode = JsonResponse:: HTTP_OK, $serializationContext = null)
 createValidationErrorResponse	src/FF/CommonBundle/Controller/ApiController.php	/^    protected function createValidationErrorResponse(ConstraintViolation $violation)$/;"	f	class:FF\CommonBundle\Controller::ApiController	access:protected	signature:(ConstraintViolation $violation)
 data	src/FF/CommonBundle/View/Table.php	/^	protected $data;$/;"	v	class:FF\CommonBundle\View::Table	access:protected
+execute	src/Hackathon/Bundle/GameBundle/Command/TestCommand.php	/^    protected function execute(InputInterface $input, OutputInterface $output)$/;"	f	class:Hackathon\Bundle\GameBundle\Command::TestCommand
 game	src/Hackathon/Bundle/GameBundle/Entity/GameTurn.php	/^    private $game;$/;"	v	class:Hackathon\Bundle\GameBundle\Entity::GameTurn	access:private
 game	src/Hackathon/Bundle/GameBundle/Entity/User.php	/^    private $game;$/;"	v	class:Hackathon\Bundle\GameBundle\Entity::User	access:private
 getAttribute	src/FF/CommonBundle/View/Table.php	/^	public function getAttribute($name)$/;"	f	class:FF\CommonBundle\View::Table	access:public	signature:($name)
