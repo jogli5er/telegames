@@ -46,6 +46,8 @@
             appState.currentView  = 'move';
             var html = '<div class="moveSelection">';
             html += '<h2>Choose your move</h2>';
+            html += '<div class="roundStartsIn">';
+            html += 'Next round starts in: <span class="timer"></span></div>';
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 html += '<div class="moveSelectionBtnGroup">'
@@ -72,7 +74,12 @@
             if( appState.time.remainingTime > 0 )
                 setTimer();
             else
-                getNext();
+            {
+                if(appState.nextState=='join')
+                    getTeams();
+                else
+                    getNext();
+            }
             $(".timer").html(appState.time.remainingTime);
         },1000);
     }
