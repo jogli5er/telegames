@@ -14,9 +14,19 @@ class APIController extends Controller
      */
     public function joinAction()
     {
-        return array(
-                // ...
-	);    
+	$data = array(
+	    "teams" => array(
+		array(
+		    "id" =>  0,
+		    "name"=> "Kreuz"
+		),
+		array(
+		    "id" =>  1,
+		    "name"=> "Kreis"
+		),
+	    )
+	);
+	return $this->createObjectResponse($data);
     }
 
     /**
