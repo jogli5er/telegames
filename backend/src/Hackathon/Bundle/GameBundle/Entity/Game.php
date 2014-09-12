@@ -20,7 +20,7 @@ class Game
      *
      * @ORM\Column(name="isFinished", type="boolean")
      */
-    private $isFinished = true;
+    private $isFinished = false;
 
     /**
      * @var integer
@@ -44,7 +44,7 @@ class Game
      *
      * @ORM\Column(name="type", type="string", length=255)
      */
-    private $type;
+    private $type = "connect4";
 
     /**
      * @ORM\Column(name="created", type="datetime")
@@ -59,6 +59,7 @@ class Game
 
     /**
      * @ORM\OneToMany(targetEntity="GameTurn", mappedBy="game")
+     * @ORM\OrderBy({"id" = "ASC"})
      */
     private $turns;
 
@@ -227,5 +228,12 @@ class Game
 	$nextRoundEndTimestamp = $this->getNextTurnEndTime()->getTimestamp();
 
 	return $nextRoundEndTimestamp - $currentDateTimestamp;
+    }
+
+    public function resetUserSelections()
+    {
+	foreach ($this->users as $user) {
+	    $user->setSelection(-1);
+	}
     }
 }
