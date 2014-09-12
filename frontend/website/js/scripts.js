@@ -10,7 +10,7 @@
         time:{
             serverCurrentTime: 'unixtimestring', //Unix timestamp
             clientCurrentTime: 'unixtimestring', //Unix timestamp
-            remainingTime: 20, //Seconds
+            remainingTime: 60, //Seconds
             timeoutId: null
         }
     };
@@ -106,8 +106,8 @@
                     appState.nextView = 'move';
                 }
                 changeState(data);
-                setTimer();
                 setRemainingTime(data.currentMoveTTL);
+                setTimer();
             }
         );
     }
@@ -119,8 +119,8 @@
             function(data){
                 console.log(data.teams);
                 changeState(data);
-                setTimer();
                 setRemainingTime(data.currentMoveTTL);
+                setTimer();
             }
         );
     }
@@ -135,8 +135,8 @@
         appState.selectedTeam = selectedTeam;
         var jqxhr = $.post( BASE_URL + URL_GAME_JOIN, selectedTeam, function(data){
             appState.nextView = 'move';
-            setTimer();
             setRemainingTime(data.currentMoveTTL);
+            setTimer();
         });
     });
 
@@ -145,12 +145,13 @@
         var selectedMove = $(this).attr('data-value');
         var jqxhr = $.post(BASE_URL + URL_GAME_MOVE, selectedMove, function(data){
             appState.nextView = 'move';
-            setTimer();
             setRemainingTime(data.currentMoveTTL);
+            setTimer();
         })
     });
 
     var main = function() {
+        setTimer();
         getTeams();
     }
 
