@@ -40,7 +40,7 @@ class GameManagerCommand extends ContainerAwareCommand
 	    // Create a new GameTurn object
 	    $turn = new GameTurn();
 	    $turn->setMove($result["selection"]);
-	    $turn->setTeam(1);	// @todo Set team from game
+	    $turn->setTeam($currentGame->getCurrentTeam());
 	    $currentGame->addTurn($turn);
 	    $entityManager->persist($turn);
 
