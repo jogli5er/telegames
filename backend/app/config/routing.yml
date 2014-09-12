@@ -1,0 +1,4 @@
+hackathon_game:
+    resource: "@HackathonGameBundle/Resources/config/routing.yml"
+    prefix:   /
+
