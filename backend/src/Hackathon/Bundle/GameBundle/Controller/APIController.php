@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use FF\CommonBundle\Controller\ApiController as Controller;
 use Hackathon\Bundle\GameBundle\Entity\User;
 use Hackathon\Bundle\GameBundle\GameLogic\ConnectFour;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class APIController extends Controller
 {
@@ -81,10 +82,21 @@ class APIController extends Controller
 	    $formattedOptions[] = $option;
 	}
 
+	// Prepare final objects
 	$data = array(
 	    "moves" => $formattedOptions
 	);
 
 	return $this->createObjectResponse($data);
+    }
+
+    /**
+     * @Route("game/move/user/{id}")
+     * @ParamConverter("user", class="HackathonGameBundle:User")
+     * @Method({"POST"})
+     */
+    public function updateMoveAction(User $user)
+    {
+
     }
 }
