@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use FF\CommonBundle\Controller\ApiController as Controller;
 use Hackathon\Bundle\GameBundle\Entity\User;
+use Hackathon\Bundle\GameBundle\GameLogic\ConnectFour;
 
 class APIController extends Controller
 {
@@ -59,13 +60,31 @@ class APIController extends Controller
 
     /**
      * @Route("game/move")
-     * @Template()
+     * @Method({"GET"})
      */
-    public function moveAction()
+    public function getMovesAction()
     {
-        return array(
-                // ...
-	);    
-    }
+	$entityManager = $this->getDoctrine()->getManager();
+	$repo = $entityManager->getRepository("HackathonGameBundle:Game");
+	$game = $repo->findCurrentGame();
+	$gameLogic = new ConnectFour($game);
 
+	$options = $gameLogic->getOptions();
+
+	// Prepare the data
+	$formattedOptions = array();
+	foreach ($options as $key) {
+	    $option = array(
+		"id" => $key,
+		"name" => "Column " . $key
+	    );
+	    $formattedOptions[] = $option;
+	}
+
+	$data = array(
+	    "moves" => $formattedOptions
+	);
+
+	return $this->createObjectResponse($data);
+    }
 }
