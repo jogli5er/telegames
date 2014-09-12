@@ -95,4 +95,14 @@ class User
     {
         return $this->selection;
     }
+
+    /*
+     * Setter for game
+     */
+    public function setGame($game)
+    {
+        $this->game = $game;
+        return $this;
+    }
+    
 }

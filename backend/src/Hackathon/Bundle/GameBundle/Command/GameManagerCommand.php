@@ -27,9 +27,13 @@ class GameManagerCommand extends ContainerAwareCommand
 	// Check if the round finished
 	$timeTillRoundFinished = $currentGame->secondsUntilRoundEnd();
 	if ($timeTillRoundFinished <= 0) {
+
+	    // The round finished. So let's find out on what the crowd decided
+	    
+
 	    // The round ended! Let's start a new one!
 	    $currentGame->startNewTurn();
-	    echo "Starting new round";
+	    echo "Starting new round\n";
 	}
 
 	$entityManager->flush();

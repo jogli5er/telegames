@@ -94,6 +94,17 @@ class Game
         return $this->type;
     }
 
+    /**
+     * Add a user to the game. 
+     *
+     * Inverse side will be set.
+     */
+    public function addUser($user)
+    {
+	$this->users[] =  $user;
+	$user->setGame($this);
+    }
+
     /*
      * Getter for turns
      */
