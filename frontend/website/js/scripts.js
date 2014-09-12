@@ -68,7 +68,7 @@
             if( appState.time.remainingTime > 0 )
                 setTimer();
             else
-                getNextView();
+                getNext();
         },1000);
     }
 
@@ -105,7 +105,7 @@
             function(data){
                 console.log(data.teams);
                 changeState(data);
-                setRemainingTime(data.currentMoveTTL);
+            //    setRemainingTime(data.currentMoveTTL);
             }
         );
     }
@@ -119,7 +119,7 @@
         appState.selectedTeam = selectedTeam;
         var jqxhr = $.post( BASE_URL + URL_GAME_JOIN, function(data){
             appState.nextView = 'move';
-            getNext();
+            setTimer();
         });
 
 

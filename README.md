@@ -8,7 +8,8 @@ Response:
         "teams": [
             { "id": 0, "name": "red" },
             { "id": 1, "name": "blue" },
-        ]
+        ],
+        "currentMoveTTL": INTEGER
     }
 
 ### POST game/join
@@ -21,7 +22,8 @@ Response:
 
     {
         "sessionId": "irgendetwas",
-        "startingTeamId": "givesUsBackTheStartingTeam"
+        "startingTeamId": "givesUsBackTheStartingTeam",
+        "currentMoveTTL": INTEGER
     }
 
 ### GET game/move
