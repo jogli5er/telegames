@@ -35,8 +35,21 @@ class ConnectFour
         return $options;
     }
 
+    public function addMove($column, $move) {
+        $col = $this->grid[$column];
+        foreach ($col as $key => $value){
+            if($value == 0){
+                $this->grid[$column][$key] = $move % 2 == 0 ? 1 : 2;
+                break;
+            }
+        }
+    }
+
     public function addMoves() {
-        $test = $this->game->getTurns();
-        return $test[0]->getMove();
+        $turns = $this->game->getTurns();
+        foreach ($turns as $key => $value){
+            $this->addMove($value->getMove(), $key);
+        }
     }
 }
+
