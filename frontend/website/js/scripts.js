@@ -99,8 +99,9 @@
             function(data){
                 if(data.isFinished)
                 {
-                    console.log(appState);
                     appState.nextView  = 'join';
+                    getTeams();
+                    break;
                 }
                 else{
                 /*    if(data.currentTeamId == appState.selectedTeam)
