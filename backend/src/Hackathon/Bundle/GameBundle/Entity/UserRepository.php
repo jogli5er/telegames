@@ -41,7 +41,7 @@ class UserRepository extends EntityRepository
 	$queryBuilder->groupBy("user.selection");
 
 	$result = $queryBuilder->getQuery()->getResult();
-	return $result[0];
+	return isset($result[0]) ? $result[0] : NULL;
     }
 
 }

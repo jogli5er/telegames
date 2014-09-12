@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Game
 {
-    static public $turnLength = 30;
+    static public $turnLength = 10;
 
     /**
      * @var boolean
@@ -44,7 +44,7 @@ class Game
      *
      * @ORM\Column(name="type", type="string", length=255)
      */
-    private $type;
+    private $type = "connect4";
 
     /**
      * @ORM\Column(name="created", type="datetime")
@@ -228,5 +228,12 @@ class Game
 	$nextRoundEndTimestamp = $this->getNextTurnEndTime()->getTimestamp();
 
 	return $nextRoundEndTimestamp - $currentDateTimestamp;
+    }
+
+    public function resetUserSelections()
+    {
+	foreach ($this->users as $user) {
+	    $user->setSelection(-1);
+	}
     }
 }

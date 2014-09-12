@@ -37,34 +37,44 @@ class GameManagerCommand extends ContainerAwareCommand
 	    echo "Round result:\n ";
 	    var_dump($result);
 
-	    // Create a new GameTurn object
-	    $turn = new GameTurn();
-	    $turn->setMove($result["selection"]);
-	    $turn->setTeam($currentGame->getCurrentTeam());
-	    $currentGame->addTurn($turn);
-	    $entityManager->persist($turn);
+	    if ($result !== NULL) {
+		// Create a new GameTurn object
+		$turn = new GameTurn();
+		$turn->setMove($result["selection"]);
+		$turn->setTeam($currentGame->getCurrentTeam());
+		$currentGame->addTurn($turn);
+		$entityManager->persist($turn);
 
-	    $gameLogic = new ConnectFour($currentGame);
-	    $winnerTeam = $gameLogic->checkWin();
-	    if ($winnerTeam !== NULL) {
-		// We have a winner
-		// @todo Set the winner
-		$currentGame->setIsFinished(true);
-		
-		// And need to start a new game
-		echo "Starting new Game\n";
-		$newGame = new Game();
-		$entityManager->persist($newGame);
+		// Reset the user selection
+		$currentGame->resetUserSelections();
+
+		$gameLogic = new ConnectFour($currentGame);
+		$winnerTeam = $gameLogic->checkWin();
+		if ($winnerTeam !== NULL) {
+		    // We have a winner
+		    // @todo Set the winner
+		    $currentGame->setIsFinished(true);
+
+		    // And need to start a new game
+		    echo "Starting new Game\n";
+		    $newGame = new Game();
+		    $entityManager->persist($newGame);
+		}
+		else {
+		    // The round ended! Let's start a new one!
+		    $currentGame->startNewTurn();
+		    echo "Starting new round\n";
+		}
 	    }
 	    else {
-		// The round ended! Let's start a new one!
+		// Users did not select anything...
 		$currentGame->startNewTurn();
-		echo "Starting new round\n";
+		echo "No move selected. Repeating turn.";
 	    }
 	}
 
 	$entityManager->flush();
 	echo "Ended update\n";
     }
-}
 
+}
