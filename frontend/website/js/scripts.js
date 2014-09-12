@@ -55,11 +55,11 @@
                 html += '<div class="moveSelectionBtnGroup">'
                 m = data.moves[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>' + "\n";
-                html += '<div class="progress">
-                          <div class="progress-bar" role="progressbar" aria-valuenow="'+getPercentages();+'" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                            '+getPercentages+'
-                          </div>
-                        </div>';
+                html += '<div class="progress">';
+                html += '<div class="progress-bar" role="progressbar" aria-valuenow="'+getPercentages();+'" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">';
+                html += getPercentages;
+                html += '</div>';
+                html += '</div>';
                 html += '</div>';
             }
             html += '</div>';
