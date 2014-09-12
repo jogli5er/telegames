@@ -34,6 +34,11 @@ class Game
      */
     private $turns;
 
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="game")
+     */
+    private $users;
+
     public function __construct() {
 	$this->features = new ArrayCollection();
     }
