@@ -48,7 +48,7 @@
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 m = data.moves[i];
-                html += '<div class="btn-group">';
+                html += '<div class="btn-group" id="teamSelectionButtons">';
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>' + "\n";
                 html += '</div>';
             }
@@ -122,7 +122,7 @@
 
     $(document).on('click', '.teamSelection button', function() {
         var selectedTeam = $(this).attr('data-value');
-        $('.btn-group').hide();
+        $('#teamSelectionButtons').hide();
         var html = '<div class="roundStartsIn">';
         html += 'Next round starts in: <span class="timer"></span></div>';
         container.append = html; 
