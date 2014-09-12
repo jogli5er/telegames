@@ -123,9 +123,10 @@
     $(document).on('click', '.teamSelection button', function() {
         var selectedTeam = $(this).attr('data-value');
         $(this).hide();
-        var html = '<div class="roundStartsIn">';
+        var html = '<h2>Choose your team</h2>';
+        html += '<div class="roundStartsIn">';
         html += 'Next round starts in: <span class="timer"></span></div>';
-        container.innerHTML(html); 
+        container.innerHTML = html; 
         appState.selectedTeam = selectedTeam;
         var jqxhr = $.post( BASE_URL + URL_GAME_JOIN, selectedTeam, function(data){
             appState.nextView = 'move';
