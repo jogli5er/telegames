@@ -46,6 +46,8 @@
             appState.currentView  = 'move';
             var html = '<div class="moveSelection">';
             html += '<h2>Choose your move</h2>';
+            html += '<div class="roundStartsIn">';
+            html += 'Next round starts in: <span class="timer"></span></div>';
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 html += '<div class="moveSelectionBtnGroup">'
@@ -72,7 +74,12 @@
             if( appState.time.remainingTime > 0 )
                 setTimer();
             else
-                getNext();
+            {
+                if(appState.nextState=='join')
+                    getTeams();
+                else
+                    getNext();
+            }
             $(".timer").html(appState.time.remainingTime);
         },1000);
     }
@@ -99,12 +106,10 @@
                     appState.nextView = 'move';
                 }
                 changeState(data);
+                setTimer();
+                setRemainingTime(data.currentMoveTTL);
             }
         );
-    }
-
-    var postNext = function(){
-
     }
 
     var getTeams = function(){
@@ -114,8 +119,8 @@
             function(data){
                 console.log(data.teams);
                 changeState(data);
-            //    setRemainingTime(data.currentMoveTTL);
-            //    setTimer();   
+                setTimer();
+                setRemainingTime(data.currentMoveTTL);
             }
         );
     }
@@ -130,16 +135,19 @@
         appState.selectedTeam = selectedTeam;
         var jqxhr = $.post( BASE_URL + URL_GAME_JOIN, selectedTeam, function(data){
             appState.nextView = 'move';
-        //    setRemainingTime(data.currentMoveTTL);
             setTimer();
+            setRemainingTime(data.currentMoveTTL);
         });
     });
 
 
     $(document).on('click', '.moveSelection button', function() {
         var selectedMove = $(this).attr('data-value');
-
-        alert('Oh, ein überragender Zug!');
+        var jqxhr = $.post(BASE_URL + URL_GAME_MOVE, selectedMove, function(data){
+            appState.nextView = 'move';
+            setTimer();
+            setRemainingTime(data.currentMoveTTL);
+        })
     });
 
     var main = function() {
