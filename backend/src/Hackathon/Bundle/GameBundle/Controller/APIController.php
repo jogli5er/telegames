@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use FF\CommonBundle\Controller\ApiController as Controller;
 use Hackathon\Bundle\GameBundle\Entity\User;
 use Hackathon\Bundle\GameBundle\GameLogic\ConnectFour;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class APIController extends Controller
 {
@@ -67,6 +68,49 @@ class APIController extends Controller
 	$entityManager = $this->getDoctrine()->getManager();
 	$repo = $entityManager->getRepository("HackathonGameBundle:Game");
 	$game = $repo->findCurrentGame();
+
+	$data = $this->createMoveData($game);
+
+	return $this->createObjectResponse($data);
+    }
+
+    /**
+     * @Route("game/move/user/{id}")
+     * @ParamConverter("user", class="HackathonGameBundle:User")
+     * @Method({"POST"})
+     */
+    public function updateMoveAction(User $user)
+    {
+	$request = $this->getRequest();
+	$bodyContent = $request->getContent();
+
+	// Get the number and check range
+	$selectedOption = intval($bodyContent);
+
+	/// @todo Check if selected option is valid
+	
+	// Set selection and store
+	$user->setSelection($selectedOption);
+	$entityManager = $this->getDoctrine()->getManager();
+	$entityManager->flush();
+
+	// Return the expected data
+	return $this->createObjectResponse($this->createMoveData());
+    }
+
+    /**
+     * Creates the data array of moves. See the README on what is expected
+     *
+     * If game is not specified, the current game is used
+     */
+    protected function createMoveData($game = NULL)
+    {
+	if ($game == NULL) {
+	    $entityManager = $this->getDoctrine()->getManager();
+	    $repo = $entityManager->getRepository("HackathonGameBundle:Game");
+	    $game = $repo->findCurrentGame();
+	}
+
 	$gameLogic = new ConnectFour($game);
 
 	$options = $gameLogic->getOptions();
@@ -81,10 +125,11 @@ class APIController extends Controller
 	    $formattedOptions[] = $option;
 	}
 
+	// Prepare final objects
 	$data = array(
 	    "moves" => $formattedOptions
 	);
 
-	return $this->createObjectResponse($data);
+	return $data;
     }
 }
