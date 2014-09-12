@@ -85,7 +85,7 @@
     }
 
     var setRemainingTime = function(newRemainer){
-        appState.time.timeoutId.clearTimeout();
+        window.clearTimeout(appState.time.timeoutId);
         appState.time.remainingTime = newRemainer;
     }
 
