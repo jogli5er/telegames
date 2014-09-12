@@ -20,6 +20,7 @@
 
         if (appState.nextView === 'join') {
 
+            appState.currentView = 'join';
             // TODO: GET game/join
 
             var html = '<div class="teamSelection">';
@@ -40,6 +41,7 @@
         }
 
         else if (appState.nextView === 'move') {
+            appState.currentView  = 'move';
             var html = '<div class="moveSelection">';
             html += '<h2>Choose your move</h2>';
             html += '<div class="moveSelectionBtnGroup">'
@@ -56,7 +58,10 @@
             container.innerHTML = html;
         }
         else if (appState.nextView === 'waiting'){
-
+            appState.currentView = 'waiting';
+            var html = '<div class="waiting">';
+            html += '<h4>Wait until the other team finished this turn</h4>';
+            container.innerHTML = html;
         }
     }
 
@@ -87,10 +92,13 @@
                 if(data.isFinished)
                     appState.nextView  = 'join';
                 else{
-                    if(data.currentTeamId == appState.selectedTeam)
-                    appState.nextView  = 'move';
+                /*    if(data.currentTeamId == appState.selectedTeam)
+                        appState.nextView  = 'move';
+                    else
+                        appState.nextView = 'waiting';*/
+                    appState.nextView = 'move';
                 }
-                console.log(data);
+                changeState(data);
             }
         );
     }
@@ -100,6 +108,7 @@
     }
 
     var getTeams = function(){
+        appState.nextView = 'join';
         $.get(
             BASE_URL + URL_GAME_JOIN,
             function(data){
@@ -118,8 +127,6 @@
             appState.nextView = 'move';
             setTimer();
         });
-
-
     });
 
 
@@ -131,7 +138,6 @@
 
     var main = function() {
         getTeams();
-        setTimer();
     }
 
     main();
