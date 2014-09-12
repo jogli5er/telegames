@@ -40,7 +40,7 @@ Response:
     }
 
 
-### POST game/move
+### POST game/move/user/{user_id}
 
 Data (id of selected move):
 
