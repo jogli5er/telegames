@@ -99,12 +99,10 @@
                     appState.nextView = 'move';
                 }
                 changeState(data);
+                setRemainingTime(data.currentMoveTTL);
+                setTimer();
             }
         );
-    }
-
-    var postNext = function(){
-
     }
 
     var getTeams = function(){
@@ -114,8 +112,8 @@
             function(data){
                 console.log(data.teams);
                 changeState(data);
-            //    setRemainingTime(data.currentMoveTTL);
-            //    setTimer();   
+                setRemainingTime(data.currentMoveTTL);
+                setTimer();   
             }
         );
     }
@@ -130,7 +128,7 @@
         appState.selectedTeam = selectedTeam;
         var jqxhr = $.post( BASE_URL + URL_GAME_JOIN, selectedTeam, function(data){
             appState.nextView = 'move';
-        //    setRemainingTime(data.currentMoveTTL);
+            setRemainingTime(data.currentMoveTTL);
             setTimer();
         });
     });
@@ -138,8 +136,11 @@
 
     $(document).on('click', '.moveSelection button', function() {
         var selectedMove = $(this).attr('data-value');
-
-        alert('Oh, ein überragender Zug!');
+        var jqxhr = $.post(BASE_URL + URL_GAME_MOVE, selectedMove, function(data){
+            appState.nextView = 'move';
+            setRemainingTime(data.currentMoveTTL);
+            setTimer();
+        })
     });
 
     var main = function() {
