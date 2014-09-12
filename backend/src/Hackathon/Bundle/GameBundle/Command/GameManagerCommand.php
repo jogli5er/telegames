@@ -19,7 +19,17 @@ class GameManagerCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
+	// Get the current game
+	$entityManager = $this->getContainer()->get('doctrine')->getManager();
+	$repo = $entityManager->getRepository("HackathonGameBundle:Game");
+	$currentGame = $repo->findCurrentGame();
+	
+	// Check if the round finished
+	$timeTillRoundFinished = $currentGame->secondsUntilRoundEnd();
+	if ($timeTillRoundFinished <= 0) {
+	    // The round ended! Let's start a new one!
+	    $this->startNewTurn();
+	}
     }
 }
 
