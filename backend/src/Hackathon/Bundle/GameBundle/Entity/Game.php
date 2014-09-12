@@ -20,7 +20,7 @@ class Game
      *
      * @ORM\Column(name="isFinished", type="boolean")
      */
-    private $isFinished = true;
+    private $isFinished = false;
 
     /**
      * @var integer
