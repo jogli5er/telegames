@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Game
 {
-    static public $turnLength = 30;
+    static public $turnLength = 5;
 
     /**
      * @var boolean
@@ -38,6 +38,13 @@ class Game
      */
     private $firstTeam;
 
+    /**
+     * @var integer
+     *
+     *
+     * @ORM\Column(name="winnerTeam", type="integer")
+     */
+    private $winnerTeam = -1;
 
     /**
      * @var string
@@ -209,6 +216,25 @@ class Game
     {
         return $this->firstTeam;
     }
+
+    /*
+     * Setter for winnerTeam
+     */
+    public function setWinnerTeam($winnerTeam)
+    {
+        $this->winnerTeam = $winnerTeam;
+        return $this;
+    }
+
+    /*
+     * Getter for winnerTeam
+     */
+    public function getWinnerTeam()
+    {
+        return $this->winnerTeam;
+    }
+    
+    
 
     /*
      * Getter for getCurrentTeam
