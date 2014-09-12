@@ -5,3 +5,7 @@ hackathon_game_homepage:
 game:
     resource: "@HackathonGameBundle/Controller/APIController.php"
     type:     annotation
+
+emulator:
+    resource: "@HackathonGameBundle/Controller/EmulatorController.php"
+    type:     annotation
