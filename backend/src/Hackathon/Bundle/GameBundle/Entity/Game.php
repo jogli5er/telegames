@@ -52,6 +52,7 @@ class Game
 
     /**
      * @ORM\OneToMany(targetEntity="GameTurn", mappedBy="game")
+     * @ORM\OrderBy({"id" = "ASC"})
      */
     private $turns;
 
