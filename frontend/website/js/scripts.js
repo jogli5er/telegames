@@ -116,6 +116,7 @@
                 console.log(data.teams);
                 changeState(data);
             //    setRemainingTime(data.currentMoveTTL);
+            //    setTimer();   
             }
         );
     }
@@ -126,11 +127,11 @@
         $('#teamSelectionButtons').hide();
         var html = '<div class="roundStartsIn">';
         html += 'Next round starts in: <span class="timer"></span></div>';
-        container.append = html; 
+        $('.teamSelection').append = html; 
         appState.selectedTeam = selectedTeam;
         var jqxhr = $.post( BASE_URL + URL_GAME_JOIN, selectedTeam, function(data){
             appState.nextView = 'move';
-           // setRemainingTime(data.currentMoveTTL);
+            setRemainingTime(data.currentMoveTTL);
             setTimer();
         });
     });
