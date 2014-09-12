@@ -45,18 +45,5 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-    },
-    connectToGear: function(){
-        GalaxyGear.onConnect(function(e){
-            alert("Connection successfully established");
-        });
-    },
-    startReceiver: function(){
-        GalaxyGear.onDataReceived(e.handle, function(e){
-            alert("Data Received - handle: " + e.handle + " data: " + e.data);
-        });
-    },
-    sendToGear: function(){
-        GalaxyGear.sendData(e.handle, "Hello From Cordova");
     }
 };
