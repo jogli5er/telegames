@@ -87,6 +87,20 @@ class Game
     }
 
     /**
+     * Creats and adds a turn. 
+     *
+     * Returns the created turn. You need to persist it.
+     */
+    public function addTurnWithNumber($column)
+    {
+	$turn = new GameTurn();
+	$turn->setMove($column);
+	$this->addTurn($turn);
+
+	return $turn;
+    }
+
+    /**
      * Add a turn. 
      *
      * Inverse side will be set.

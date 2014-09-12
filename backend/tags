@@ -55,6 +55,7 @@ __invoke	src/FF/CommonBundle/View/Table.php	/^	public function __invoke()$/;"	f	
 __toString	src/FF/CommonBundle/View/Table.php	/^	public function __toString()$/;"	f	class:FF\CommonBundle\View::Table	access:public	signature:()
 addColumn	src/FF/CommonBundle/View/Table.php	/^	public function addColumn($column)$/;"	f	class:FF\CommonBundle\View::Table	access:public	signature:($column)
 addTurn	src/Hackathon/Bundle/GameBundle/Entity/Game.php	/^    public function addTurn($turn)$/;"	f	class:Hackathon\Bundle\GameBundle\Entity::Game
+addTurnWithNumber	src/Hackathon/Bundle/GameBundle/Entity/Game.php	/^    public function addTurnWithNumber($column)$/;"	f	class:Hackathon\Bundle\GameBundle\Entity::Game
 attributes	src/FF/CommonBundle/View/Table.php	/^	protected $attributes;$/;"	v	class:FF\CommonBundle\View::Table	access:protected
 columns	src/FF/CommonBundle/View/Table.php	/^	protected $columns;$/;"	v	class:FF\CommonBundle\View::Table	access:protected
 configure	src/Hackathon/Bundle/GameBundle/Command/TestCommand.php	/^    protected function configure()$/;"	f	class:Hackathon\Bundle\GameBundle\Command::TestCommand
