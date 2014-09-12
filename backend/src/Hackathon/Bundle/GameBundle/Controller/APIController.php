@@ -81,6 +81,7 @@ class APIController extends Controller
 	$game = $repo->findCurrentGame();
 
 	$data = $this->createMoveData($game);
+	$data["isFinished"] = $game->getIsFinished();
 
 	return $this->createObjectResponse($data);
     }
