@@ -8,6 +8,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Hackathon\Bundle\GameBundle\Entity\GameTurn;
 use Hackathon\Bundle\GameBundle\GameLogic\ConnectFour;
 use Hackathon\Bundle\GameBundle\Entity\Game;
+use Hackathon\Bundle\GameBundle\Formatter\TeletextFormatter;
+use Hackathon\Bundle\GameBundle\Communicator\TeletextCommunicator;
 
 /**
  * Class GameNanagerCommand
@@ -63,6 +65,9 @@ class GameManagerCommand extends ContainerAwareCommand
 		else {
 		    // The round ended! Let's start a new one!
 		    $currentGame->startNewTurn();
+		    $formatter = new TeletextFormatter($currentGame);
+		    $formattedText = $formatter->getFormat();
+		    TeletextCommunicator::post($formattedText);
 		    echo "Starting new round\n";
 		}
 	    }
