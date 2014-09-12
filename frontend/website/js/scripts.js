@@ -10,7 +10,7 @@
         time:{
             serverCurrentTime: 'unixtimestring', //Unix timestamp
             clientCurrentTime: 'unixtimestring', //Unix timestamp
-            remainingTime: 1, //Seconds
+            remainingTime: 20, //Seconds
             timeoutId: null
         }
     };
