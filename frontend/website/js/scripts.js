@@ -103,7 +103,7 @@
         $.get(
             BASE_URL + URL_GAME_MOVE,
             function(data){
-                if(data.isFinished)
+                if(false) //data.isFinished
                 {
                     appState.nextView  = 'join';
                     getTeams();
