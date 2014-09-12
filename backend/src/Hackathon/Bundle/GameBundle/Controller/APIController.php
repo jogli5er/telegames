@@ -59,13 +59,11 @@ class APIController extends Controller
 
     /**
      * @Route("game/move")
-     * @Template()
+     * @Route({"GET"})
      */
-    public function moveAction()
+    public function getMovesAction()
     {
-        return array(
-                // ...
-	);    
+	
     }
 
 }
