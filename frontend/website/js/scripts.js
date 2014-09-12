@@ -107,9 +107,9 @@
         $.get(
             BASE_URL + URL_GAME_JOIN,
             function(data){
-                //setRemainingTime(data.currentMoveTTL);
                 console.log(data);
-                //changeState();
+                changeState();
+                setRemainingTime(data.currentMoveTTL);
             }
         );
     }
