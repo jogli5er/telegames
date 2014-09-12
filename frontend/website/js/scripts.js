@@ -98,7 +98,10 @@
             BASE_URL + URL_GAME_MOVE,
             function(data){
                 if(data.isFinished)
+                {
+                    console.log(appState);
                     appState.nextView  = 'join';
+                }
                 else{
                 /*    if(data.currentTeamId == appState.selectedTeam)
                         appState.nextView  = 'move';
