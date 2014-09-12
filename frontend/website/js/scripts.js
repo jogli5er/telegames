@@ -49,11 +49,17 @@
             html += '<h2>Choose your move</h2>';
             html += '<div class="roundStartsIn">';
             html += 'Next turn starts in: <span class="timer"></span></div>';
+            html += 'Total Users: ';
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 html += '<div class="moveSelectionBtnGroup">'
                 m = data.moves[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>' + "\n";
+                html += '<div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="'+getPercentages();+'" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            '+getPercentages+'
+                          </div>
+                        </div>';
                 html += '</div>';
             }
             html += '</div>';
@@ -115,6 +121,10 @@
                 setTimer();
             }
         );
+    }
+
+    var getPercentages = function(){
+        return 60;
     }
 
     var getTeams = function(){
