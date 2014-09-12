@@ -22,13 +22,8 @@ class TeletextFormatter
         $this->gridWidth = $this->connectFour->width;
         $this->gridHeight = $this->connectFour->height;
 
-        // TODO: Remove this test data
-        // $this->grid = [[1,1,2,0,0,0],[1,2,1,0,0,0],[2,0,0,0,0,0],[2,1,2,2,1,0],[1,1,2,0,0,0],[1,0,0,0,0,0],[2,2,2,1,0,0]];
-
-        // TODO: Use correct variables for "playerOnTurn" and "playerOnHold"
-        $this->playerOnTurn = (rand(1,2) === 1 ? 'x' : 'o');
+        $this->playerOnTurn = ($game->getCurrentTeam() === 1 ? 'x' : 'o');
         $this->playerOnHold = ($this->playerOnTurn === 'x' ? 'o' : 'x');
-
     }
 
 
