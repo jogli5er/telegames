@@ -54,7 +54,7 @@
             html += '<h2>Choose your move</h2>';
             html += '<div class="roundStartsIn">';
             html += 'Next turn starts in: <span class="timer"></span></div>';
-            html += 'Total Users: '+appState.statistics.userCount + '(Current Team: '+appState.statistics.turnUserCount+')');
+            html += 'Total Users: '+appState.statistics.userCount + '(Current Team: '+appState.statistics.turnUserCount+')';
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 html += '<div class="moveSelectionBtnGroup">'
