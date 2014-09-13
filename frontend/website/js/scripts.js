@@ -101,7 +101,7 @@
                     getNext();
             }
             $(".timer").html(appState.time.remainingTime);
-        },1000);
+        },3500);
     }
 
     var setRemainingTime = function(newRemainer){
@@ -120,16 +120,15 @@
                 console.log("data", data);
                 if(data.isFinished) //data.isFinished
                 {
-                    appState.nextView  = 'join';
-                    getTeams();
-                    if(data.winnderTeam==1){
+                    if(data.winnerTeam==1){
                         alert("The x-Team won");
-                        return;
                     }
                     else{
                         alert("The o-Team won");
-                        return;
                     }
+                    appState.nextView  = 'join';
+                    getTeams();
+                    return;
                 }
                 else{
                     if(data.moves.length == 0)
