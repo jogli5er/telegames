@@ -1,0 +1,31 @@
+# Late Night Changes
+
+- Add userid to GET game/move
+- GET game/move/user/{id} returns only moves if the user is in the current team. "moves" is an  
+  empty array otherwise
+- Error message when POST to game/move/user/{id} when it's not the users turn
+- New endpoint statistics/selectedOptions. 0 to 6 are selectable options, 7 are undecided users.
+  Example: 
+
+    {
+	"0": 0,
+	    "1": 0,
+	    "2": 0,
+	    "3": 1,
+	    "4": 0,
+	    "5": 0,
+	    "6": 0,
+	    "7": 7,
+	    "turnUserCount": 8,
+	    "userCount": 17,
+	    "currentMoveTTL": -1560
+    }
+
+
+- Add winnerTeam property. Default value is -1. Changes to the winner team when the isFinished property
+  is set to true
+
+
+TODO: 
+
+- FindCurrentGame should return "old game" longer to show results
