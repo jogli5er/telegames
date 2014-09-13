@@ -78,7 +78,7 @@ class Game
     public function __construct() 
     {
 	$this->created = new \DateTime();
-	$this->firstTeam = rand(1,2);
+	$this->firstTeam = 1;	// Team 1 always starts
 
 	// Start a little bit later
 	$this->startNewTurn(2);
