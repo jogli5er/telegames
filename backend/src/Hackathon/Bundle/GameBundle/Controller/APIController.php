@@ -28,7 +28,6 @@ class APIController extends Controller
 		    "id" =>  2,
 		    "name"=> "o"
 		),
-	    o
 	);
 	return $this->createObjectResponse($data);
     }
