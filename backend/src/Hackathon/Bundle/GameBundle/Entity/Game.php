@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Game
 {
-    static public $turnLength = 20;
+    static public $turnLength = 10;
 
     /**
      * @var boolean
