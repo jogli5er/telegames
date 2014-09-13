@@ -22,13 +22,13 @@ class APIController extends Controller
 	    "teams" => array(
 		array(
 		    "id" =>  1,
-		    "name"=> "Kreuz"
+		    "name"=> "x"
 		),
 		array(
 		    "id" =>  2,
-		    "name"=> "Kreis"
+		    "name"=> "o"
 		),
-	    )
+	    o
 	);
 	return $this->createObjectResponse($data);
     }
