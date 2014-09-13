@@ -79,10 +79,28 @@ class Game
     {
 	$this->created = new \DateTime();
 	$this->firstTeam = rand(1,2);
-	$this->startNewTurn();
+
+	// Start a little bit later
+	$this->startNewTurn(2);
 
 	$this->users = new ArrayCollection();
 	$this->turns = new ArrayCollection();
+    }
+
+    /**
+     * Checks if the game already started
+     */
+    public function isStarted()
+    {
+	$currentDate = new \DateTime();
+	$currentDateTimestamp = $currentDate->getTimestamp();
+	$nextRoundEndTimestamp = $this->getNextTurnEndTime()->getTimestamp();
+
+	$difference = $nextRoundEndTimestamp - $currentDateTimestamp;
+
+	// Check if the difference to the next turn length is bigger then 
+	// the turn length. If it is like this, we didn't start yet
+	return ($difference > self::$turnLength);
     }
 
     /**
@@ -167,11 +185,11 @@ class Game
 	$turn->setGame($this);
     }
 
-    public function startNewTurn()
+    public function startNewTurn($times = 1)
     {
 	// We update the nextTurnEndTime
 	$turnEndTime = new \DateTime();
-	$turnEndTime->add(new \DateInterval("PT". self::$turnLength ."S"));
+	$turnEndTime->add(new \DateInterval("PT". (self::$turnLength * $times) ."S"));
 	$this->nextTurnEndTime = $turnEndTime;
     }
 

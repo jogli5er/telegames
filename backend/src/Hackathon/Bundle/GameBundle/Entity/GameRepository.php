@@ -15,10 +15,25 @@ class GameRepository extends EntityRepository
     /**
      * Returns the current game
      */
-    public function findCurrentGame()
+    public function findCurrentGame($includeNotStarted = true)
     {
 	$games = $this->findBy(array(), array("id" => "DESC"), 1);
-	return $games[0];
+	$game = $games[0];
+
+	// Check if we should include not started games
+	if ($includeNotStarted == false) {
+	    if ($game->isStarted() == false) {
+		// The game is not yet started. We dont want it
+		$game = $this->findBy(
+		    array(
+			'id' => ($game->getId() - 1)
+		    )
+		);
+	    }
+	}
+
+	return $game;
     }
+
 
 }

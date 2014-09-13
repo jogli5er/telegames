@@ -77,9 +77,8 @@ class APIController extends Controller
      */
     public function getMovesAction( User $user )
     {
-	$entityManager = $this->getDoctrine()->getManager();
-	$repo = $entityManager->getRepository("HackathonGameBundle:Game");
-	$game = $repo->findCurrentGame();
+	// Get the game of the user
+	$game = $user->getGame();
 
 	$data = array("moves" => array());
 	if ($game->getCurrentTeam() == $user->getTeam()) {
