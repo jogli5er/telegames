@@ -87,6 +87,7 @@ class APIController extends Controller
 	}
 
 	// Add isFinished variable
+	$data["winnerTeam"] = $game->getWinnerTeam();
 	$data["isFinished"] = $game->getIsFinished();
 	return $this->createObjectResponse($data);
     }

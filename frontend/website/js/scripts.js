@@ -122,7 +122,14 @@
                 {
                     appState.nextView  = 'join';
                     getTeams();
-                    return ;
+                    if(data.winnderTeam==1){
+                        alert("The x-Team won");
+                        return;
+                    }
+                    else{
+                        alert("The o-Team won");
+                        return;
+                    }
                 }
                 else{
                     if(data.moves.length == 0)
