@@ -32,10 +32,11 @@ Response:
 
     {
         "moves": [
-            { "id": 0, "name": "Column 1" },
-            { "id": 1, "name": "Column 2" },
-            { "id": 2, "name": "Column 3" },
+            { "id": 0, "name": "Column 1" , "usersSelected": integer},
+            { "id": 1, "name": "Column 2" , "usersSelected": integer},
+            { "id": 2, "name": "Column 3" , "usersSelected": integer},
         ],
+        "totalActiveUsers": integer,
         "currentMoveTTL": 23,
         "currentTeamId":"givesUsBackTheCurrentPlayingTeam",
         "isFinished" : false

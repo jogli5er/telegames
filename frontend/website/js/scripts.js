@@ -49,17 +49,15 @@
             html += '<h2>Choose your move</h2>';
             html += '<div class="roundStartsIn">';
             html += 'Next turn starts in: <span class="timer"></span></div>';
-            html += 'Total Users: ';
+            html += 'Total Users: 96';
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 html += '<div class="moveSelectionBtnGroup">'
                 m = data.moves[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>' + "\n";
- /*               html += '<div class="progress">';
-                html += '<div class="progress-bar" role="progressbar" aria-valuenow="'+getPercentages();+'" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">';
-                html += getPercentages;
-                html += '</div>';
-                html += '</div>';*/
+                html += '<div class="progress active">';
+                html += '<div class="bar" style="width: '+getPercentages(data.totalActiveUsers, data.moves[i].usersSelected);+';"><span>'+data.moves[i].usersSelected+'</span></div>' //TODO: Check compatibility with backend
+                html += '</div>'
                 html += '</div>';
             }
             html += '</div>';
@@ -78,8 +76,10 @@
     var setTimer = function(){
         appState.time.timeoutId = setTimeout(function(){
             appState.time.remainingTime = appState.time.remainingTime - 1;
-            if( appState.time.remainingTime >= 1 )
+            if( appState.time.remainingTime >= 1 ){
+                getNext();
                 setTimer();
+            }
             else
             {
                 if(appState.nextView==='join')
@@ -123,9 +123,6 @@
         );
     }
 
-    var getPercentages = function(){
-        return 60;
-    }
 
     var getTeams = function(){
         appState.nextView = 'join';
@@ -140,6 +137,11 @@
         );
     }
 
+//STATISTICS
+
+    var getPercentages = function(totalUsers, selectedUsers) {
+        return (selectedUsers/totalUsers)*100;
+    }
 
     $(document).on('click', '.teamSelection button', function() {
         var selectedTeam = $(this).attr('data-value');
