@@ -147,7 +147,7 @@ class APIController extends Controller
 	foreach ($options as $key) {
 	    $option = array(
 		"id" => $key,
-		"name" => "Column " . $key
+		"name" => "Column " . $key + 1
 	    );
 	    $formattedOptions[] = $option;
 	}
