@@ -72,6 +72,7 @@
             appState.currentView = 'waiting';
             var html = '<div class="waiting">';
             html += '<h4>Wait until the other team finished this turn</h4>';
+            appState.statistics = null;
             container.innerHTML = html;
         }
     }
