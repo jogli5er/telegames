@@ -17,7 +17,8 @@
         },
         statistics:{
 
-        }
+        },
+        buttonIdSelected: null
     };
     var container = w.document.getElementById('mainContainer');
 
@@ -58,9 +59,9 @@
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 html += '<div class="moveSelectionBtnGroup">'
                 m = data.moves[i];
-                html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>';
+                html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '" id="'+m.id+'">' + m.name + '</button>';
                 html += '<div class="progress active">';
-                html += '<div class="bar" style="width: '+getPercentages(appState.statistics.turnUserCount, appState.statistics[m.id]);+'"><span>'+appState.statistics[m.id]+'</span></div>';
+                html += '<div class="bar" style="width: '+getPercentages(appState.statistics.turnUserCount, appState.statistics[m.id])+'"><span>'+appState.statistics[m.id]+'</span></div>';
                 html += '</div>';
                 html += '</div>';
             }
@@ -72,6 +73,7 @@
             appState.currentView = 'waiting';
             var html = '<div class="waiting">';
             html += '<h4>Wait until the other team finished this turn</h4>';
+            appState.statistics = null;
             container.innerHTML = html;
         }
     }
@@ -82,6 +84,8 @@
             appState.time.remainingTime = appState.time.remainingTime - 1;
             if( appState.time.remainingTime >= 1 ){
                 getStatistics();
+                $('#'+appState.buttonIdSelected).addClass('active');
+                getNext();
                 setTimer();
             }
             else
@@ -103,6 +107,7 @@
 //VIEW CLASSES
 
     var getNext = function(){
+        getStatistics();
         console.log("Get next view from server");
         $.get(
             BASE_URL + URL_GAME_MOVE + "/user/" + appState.userId,
@@ -177,6 +182,7 @@
         var selectedMove = $(this).attr('data-value');
         var jqxhr = $.post(BASE_URL + URL_GAME_MOVE + "/user/"+appState.userId , selectedMove, function(data){
             appState.nextView = 'move';
+            appState.buttonIdSelected = selectedMove;
             setRemainingTime(data.currentMoveTTL);
             setTimer();
         }
