@@ -24,7 +24,7 @@ class GameRepository extends EntityRepository
 	if ($includeNotStarted == false) {
 	    if ($game->isStarted() == false) {
 		// The game is not yet started. We dont want it
-		$game = $this->findBy(
+		$game = $this->findOneBy(
 		    array(
 			'id' => ($game->getId() - 1)
 		    )
