@@ -83,6 +83,7 @@
             appState.time.remainingTime = appState.time.remainingTime - 1;
             if( appState.time.remainingTime >= 1 ){
                 getStatistics();
+                changeState();
                 setTimer();
             }
             else
@@ -104,6 +105,7 @@
 //VIEW CLASSES
 
     var getNext = function(){
+        getStatistics();
         console.log("Get next view from server");
         $.get(
             BASE_URL + URL_GAME_MOVE + "/user/" + appState.userId,
