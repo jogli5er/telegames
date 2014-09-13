@@ -16,6 +16,8 @@ class TeletextFormatter
     private $playerOnHold = false;
     private $lastMove = false;
     private $lastMoveIsDrawn = false;
+    private $winnerTeam = false;
+    private $teamNames = array(1 => 'x', 2 => 'o');
 
 
     public function __construct(Game $game) {
@@ -24,14 +26,20 @@ class TeletextFormatter
         $this->gridWidth = $this->connectFour->width;
         $this->gridHeight = $this->connectFour->height;
 
-        $this->playerOnTurn = ($game->getCurrentTeam() === 1 ? 'x' : 'o');
-        $this->playerOnHold = ($this->playerOnTurn === 'x' ? 'o' : 'x');
+        $this->playerOnTurn = ($game->getCurrentTeam() === 1 ? $this->teamNames[1] : $this->teamNames[2]);
+        $this->playerOnHold = ($this->playerOnTurn === $this->teamNames[1] ? $this->teamNames[2] : $this->teamNames[1]);
 
         $turns = $game->getTurns();
         if (count($turns)) {
             $lastTurn = $turns[count($turns) - 1];
             $this->lastMove = $lastTurn->getMove();
         }
+
+
+        if ($game->getIsFinished()) {
+            $this->winnerTeam = $game->getWinnerTeam();
+        }
+
     }
 
 
@@ -43,11 +51,21 @@ class TeletextFormatter
         $str .= '          T E L E G A M E' . PHP_EOL;
         $str .= '======================================' . PHP_EOL;
         $str .= '    > Join on www.{IP_OF_SANDRO} <' . PHP_EOL;
-        $str .= PHP_EOL;
-        $str .= PHP_EOL;
-        $str .= PHP_EOL;
-        $str .= '      It\'s ' . $this->playerOnTurn . '\'s move (not ' . $this->playerOnHold . '\'s)' . PHP_EOL;
-        $str .= PHP_EOL;
+        if ($this->winnerTeam) {
+            $str .= PHP_EOL;
+            $str .= '              * * *' . PHP_EOL;
+            $str .= '         WE HAVE A WINNER: ' . $this->teamNames[$this->winnerTeam] . PHP_EOL;
+            $str .= '    C O N G R A T U L A T I O N S !' . PHP_EOL;
+            $str .= '              * * *' . PHP_EOL;
+            $str .= PHP_EOL;
+            $str .= PHP_EOL;
+        } else {
+            $str .= PHP_EOL;
+            $str .= PHP_EOL;
+            $str .= PHP_EOL;
+            $str .= '      It\'s ' . $this->playerOnTurn . '\'s move (not ' . $this->playerOnHold . '\'s)' . PHP_EOL;
+            $str .= PHP_EOL;
+        }
         if ($this->lastMove) {
 
         }
@@ -96,7 +114,8 @@ class TeletextFormatter
         if ($val === 0) {
             return ' ';
         }
-        return ($val === 1 ? 'x' : 'o');
+        //return ($val === 1 ? $this->teamNames[1] : $this->teamNames[2]);
+        return ($val === 1 ? $this->teamNames[2] : $this->teamNames[1]);
     }
 
 }
