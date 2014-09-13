@@ -126,6 +126,7 @@
                     else{
                         alert("The o-Team won");
                     }
+                    data.isFinished = false;
                     appState.nextView  = 'join';
                     getTeams();
                     return;
