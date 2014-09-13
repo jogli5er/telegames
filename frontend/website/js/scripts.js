@@ -60,7 +60,7 @@
                 m = data.moves[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>' + "\n";
                 html += '<div class="progress active">';
-                html += '<div class="bar" style="width: '+getPercentages(appState.statistics.7, appState.statistics.m.id);+';"><span>'+appState.statistics.m.id+'</span></div>' //TODO: Check compatibility with backend
+                html += '<div class="bar" style="width: '+getPercentages(appState.statistics.turnUserCount, appState.statistics.m.id);+';"><span>'+appState.statistics.m.id+'</span></div>' //TODO: Check compatibility with backend
                 html += '</div>'
                 html += '</div>';
             }
