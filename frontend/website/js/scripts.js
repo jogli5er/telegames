@@ -17,7 +17,8 @@
         },
         statistics:{
 
-        }
+        },
+        buttonIdSelected
     };
     var container = w.document.getElementById('mainContainer');
 
@@ -58,7 +59,7 @@
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 html += '<div class="moveSelectionBtnGroup">'
                 m = data.moves[i];
-                html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>';
+                html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '" id="'+m.id+'">' + m.name + '</button>';
                 html += '<div class="progress active">';
                 html += '<div class="bar" style="width: '+getPercentages(appState.statistics.turnUserCount, appState.statistics[m.id])+'"><span>'+appState.statistics[m.id]+'</span></div>';
                 html += '</div>';
@@ -83,6 +84,7 @@
             appState.time.remainingTime = appState.time.remainingTime - 1;
             if( appState.time.remainingTime >= 1 ){
                 getStatistics();
+                $('#'+appState.buttonIdSelected).addClass('active');
                 getNext();
                 setTimer();
             }
@@ -180,6 +182,7 @@
         var selectedMove = $(this).attr('data-value');
         var jqxhr = $.post(BASE_URL + URL_GAME_MOVE + "/user/"+appState.userId , selectedMove, function(data){
             appState.nextView = 'move';
+            appState.buttonIdSelected = selectedMove;
             setRemainingTime(data.currentMoveTTL);
             setTimer();
         }
