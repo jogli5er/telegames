@@ -14,6 +14,8 @@ class TeletextFormatter
     private $gridHeight = array();
     private $playerOnTurn = false;
     private $playerOnHold = false;
+    private $lastMove = false;
+    private $lastMoveIsDrawn = false;
 
 
     public function __construct(Game $game) {
@@ -24,6 +26,12 @@ class TeletextFormatter
 
         $this->playerOnTurn = ($game->getCurrentTeam() === 1 ? 'x' : 'o');
         $this->playerOnHold = ($this->playerOnTurn === 'x' ? 'o' : 'x');
+
+        $turns = $game->getTurns();
+        if (count($turns)) {
+            $lastTurn = $turns[count($turns) - 1];
+            $this->lastMove = $lastTurn->getMove();
+        }
     }
 
 
@@ -40,12 +48,41 @@ class TeletextFormatter
         $str .= PHP_EOL;
         $str .= '      It\'s ' . $this->playerOnTurn . '\'s move (not ' . $this->playerOnHold . '\'s)' . PHP_EOL;
         $str .= PHP_EOL;
-        $str .= '      1   2   3   4   5   6   7' . PHP_EOL;
+        if ($this->lastMove) {
+
+        }
+
+        $str .= '    ';
+        for ($i = 1; $i <=7; $i++) {
+            if ($this->lastMove !== false && $i === ($this->lastMove + 1)) {
+                $str .= ' *' . $i . '*';
+            } else {
+                $str .= '  ' . $i . ' ';
+            }
+        }
+        $str .= PHP_EOL;
+
         for ($i = ($this->gridHeight - 1); $i >= 0; $i--) {
+
             $str .= $separator;
             $str .= '    ';
+
             for ($j = 0; $j < $this->gridWidth; $j++) {
-                $str .= ': ' . $this->getGridValue($this->grid[$j][$i]) . ' ';
+
+                $isLastMove = false;
+                if (!$this->lastMoveIsDrawn && $j === $this->lastMove) {
+                    if ($this->grid[$j][$i] != 0) {
+                        $isLastMove = true;
+                        $this->lastMoveIsDrawn = true;
+                    }
+                }
+
+                if ($isLastMove) {
+                    $str .= ':*' . $this->getGridValue($this->grid[$j][$i]) . '*';
+                } else {
+                    $str .= ': ' . $this->getGridValue($this->grid[$j][$i]) . ' ';
+                }
+
             }
             $str .= ':' . PHP_EOL;
         }

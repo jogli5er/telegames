@@ -54,14 +54,14 @@
             html += '<h2>Choose your move</h2>';
             html += '<div class="roundStartsIn">';
             html += 'Next turn starts in: <span class="timer"></span></div>';
-            html += 'Total Users: '+appState.statistics.userCount;
+            html += 'Total Users: '+appState.statistics.userCount + ', (Current Team: '+appState.statistics.turnUserCount+')';
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 html += '<div class="moveSelectionBtnGroup">'
                 m = data.moves[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '" id="'+m.id+'">' + m.name + '</button>';
-                html += '<div class="progress active">';
-                html += '<div class="bar" style="width: '+getPercentages(appState.statistics.turnUserCount, appState.statistics[m.id])+'%"><span>'+appState.statistics[m.id]+'</span></div>';
+                html += '<div class="progress">';
+                html += '<div class="progress-bar" style="width: '+getPercentages(appState.statistics.turnUserCount, appState.statistics[m.id])+'%"><span>'+appState.statistics[m.id]+'</span></div>';
                 html += '</div>';
                 html += '</div>';
             }
@@ -158,8 +158,10 @@
             }
         );
     }
+
     var getPercentages = function(totalUsers, selectedUsers) {
-        return (selectedUsers/totalUsers)*100;
+        console.log((selectedUsers/totalUsers)*100);
+        return ((selectedUsers/totalUsers)*100);
     }
 
     $(document).on('click', '.teamSelection button', function() {

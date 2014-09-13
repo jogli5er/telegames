@@ -37,7 +37,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var res = window.open("http://www.google.com", "_self", "location=yes");
+        var res = window.open("http://10.201.3.43/sites/telegames/frontend/website/", "_self", "location=yes");
         console.log('Received Event: ' + id);
     }
 };
