@@ -50,7 +50,7 @@ class TeletextFormatter
         $str  = PHP_EOL;
         $str .= '          T E L E G A M E' . PHP_EOL;
         $str .= '======================================' . PHP_EOL;
-        $str .= '    > Join on www.{IP_OF_SANDRO} <' . PHP_EOL;
+        $str .= '    > Join on http://10.201.3.43 <' . PHP_EOL;
         if ($this->winnerTeam) {
             $str .= PHP_EOL;
             $str .= '              * * *' . PHP_EOL;
