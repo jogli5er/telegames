@@ -101,7 +101,7 @@
                     getNext();
             }
             $(".timer").html(appState.time.remainingTime);
-        },1000);
+        },3500);
     }
 
     var setRemainingTime = function(newRemainer){
