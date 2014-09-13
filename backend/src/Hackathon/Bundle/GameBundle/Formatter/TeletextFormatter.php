@@ -114,8 +114,7 @@ class TeletextFormatter
         if ($val === 0) {
             return ' ';
         }
-        //return ($val === 1 ? $this->teamNames[1] : $this->teamNames[2]);
-        return ($val === 1 ? $this->teamNames[2] : $this->teamNames[1]);
+        return ($val === 1 ? $this->teamNames[1] : $this->teamNames[2]);
     }
 
 }
