@@ -107,6 +107,7 @@
         $.get(
             BASE_URL + URL_GAME_MOVE + "/user/" + appState.userId,
             function(data){
+                console.log("data", data);
                 if(data.isFinished) //data.isFinished
                 {
                     appState.nextView  = 'join';
