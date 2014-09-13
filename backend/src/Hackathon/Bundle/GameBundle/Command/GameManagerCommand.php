@@ -54,7 +54,8 @@ class GameManagerCommand extends ContainerAwareCommand
 		$winnerTeam = $gameLogic->checkWin();
 		if ($winnerTeam !== NULL) {
 		    // We have a winner
-		    // @todo Set the winner
+		    echo "The winner is: " . $winnerTeam . "\n";
+		    $currentGame->setWinnerTeam($winnerTeam);
 		    $currentGame->setIsFinished(true);
 
 		    // And need to start a new game

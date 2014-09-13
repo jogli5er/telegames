@@ -9,3 +9,7 @@ game:
 emulator:
     resource: "@HackathonGameBundle/Controller/EmulatorController.php"
     type:     annotation
+
+statistics:
+    resource: "@HackathonGameBundle/Controller/StatisticsController.php"
+    type:     annotation

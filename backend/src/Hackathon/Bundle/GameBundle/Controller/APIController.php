@@ -71,18 +71,24 @@ class APIController extends Controller
     }
 
     /**
-     * @Route("game/move")
+     * @Route("game/move/user/{id}")
+     * @ParamConverter("user", class="HackathonGameBundle:User")
      * @Method({"GET"})
      */
-    public function getMovesAction()
+    public function getMovesAction( User $user )
     {
 	$entityManager = $this->getDoctrine()->getManager();
 	$repo = $entityManager->getRepository("HackathonGameBundle:Game");
 	$game = $repo->findCurrentGame();
 
-	$data = $this->createMoveData($game);
-	$data["isFinished"] = $game->getIsFinished();
+	$data = array("moves" => array());
+	if ($game->getCurrentTeam() == $user->getTeam()) {
+	    // The user has actions in this round 
+	    $data = $this->createMoveData($game);
+	}
 
+	// Add isFinished variable
+	$data["isFinished"] = $game->getIsFinished();
 	return $this->createObjectResponse($data);
     }
 
@@ -93,14 +99,23 @@ class APIController extends Controller
      */
     public function updateMoveAction(User $user)
     {
+	// Return an error if the user is not in the current team
+	$entityManager = $this->getDoctrine()->getManager();
+	$repo = $entityManager->getRepository("HackathonGameBundle:Game");
+	$game = $repo->findCurrentGame();
+	if ($game->getCurrentTeam() != $user->getTeam()) {
+	    return $this->createErrorResponse(
+		"User is not in current team", 
+		"You should wait for the next turn"
+	    );
+	}
+
 	$request = $this->getRequest();
 	$bodyContent = $request->getContent();
 
 	// Get the number and check range
 	$selectedOption = intval($bodyContent);
 
-	/// @todo Check if selected option is valid
-	
 	// Set selection and store
 	$user->setSelection($selectedOption);
 	$entityManager = $this->getDoctrine()->getManager();
