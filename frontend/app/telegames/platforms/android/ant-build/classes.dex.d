@@ -1,0 +1,23 @@
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes.dex : \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$4.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$InAppBrowserClient.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowserDialog.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppChromeClient.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$1.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$4.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$3.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$2.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$1.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$2.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$3.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$4$1.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/com/phonegap/helloworld/TeleGames.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/com/phonegap/helloworld/R$xml.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/com/phonegap/helloworld/BuildConfig.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/com/phonegap/helloworld/R$string.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/com/phonegap/helloworld/R$drawable.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/com/phonegap/helloworld/R$attr.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/classes/com/phonegap/helloworld/R.class \
+/home/rbrunne/telegames/frontend/app/telegames/platforms/android/ant-build/dexedLibs/classes-4512ddca9ccdf7541c4515882ea139b3.jar \
