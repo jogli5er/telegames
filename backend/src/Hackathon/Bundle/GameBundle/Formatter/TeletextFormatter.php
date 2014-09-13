@@ -48,7 +48,20 @@ class TeletextFormatter
         $str .= PHP_EOL;
         $str .= '      It\'s ' . $this->playerOnTurn . '\'s move (not ' . $this->playerOnHold . '\'s)' . PHP_EOL;
         $str .= PHP_EOL;
-        $str .= '      1   2   3   4   5   6   7' . PHP_EOL;
+        if ($this->lastMove) {
+
+        }
+
+        $str .= '    ';
+        for ($i = 1; $i <=7; $i++) {
+            if ($this->lastMove !== false && $i === ($this->lastMove + 1)) {
+                $str .= ' *' . $i . '*';
+            } else {
+                $str .= '  ' . $i . ' ';
+            }
+        }
+        $str .= PHP_EOL;
+
         for ($i = ($this->gridHeight - 1); $i >= 0; $i--) {
 
             $str .= $separator;
