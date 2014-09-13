@@ -56,7 +56,7 @@
                 m = data.moves[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>' + "\n";
                 html += '<div class="progress active">';
-                html += '<div class="bar" style="width: '+getPercentages(data.sum, data.moves[i].usersSelected);+';"><span>'+data.moves[i].usersSelected+'</span></div>' //TODO: Check compatibility with backend
+                html += '<div class="bar" style="width: '+getPercentages(data.totalActiveUsers, data.moves[i].usersSelected);+';"><span>'+data.moves[i].usersSelected+'</span></div>' //TODO: Check compatibility with backend
                 html += '</div>'
                 html += '</div>';
             }
