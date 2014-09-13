@@ -159,6 +159,7 @@
         );
     }
     var getPercentages = function(totalUsers, selectedUsers) {
+        console.log((selectedUsers/totalUsers)*100);
         return (selectedUsers/totalUsers)*100;
     }
 
