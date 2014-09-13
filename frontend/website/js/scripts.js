@@ -60,8 +60,8 @@
                 html += '<div class="moveSelectionBtnGroup">'
                 m = data.moves[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '" id="'+m.id+'">' + m.name + '</button>';
-                html += '<div class="progress active">';
-                html += '<div class="bar" style="width: '+getPercentages(appState.statistics.turnUserCount, appState.statistics[m.id])+'%"><span>'+appState.statistics[m.id]+'</span></div>';
+                html += '<div class="progress">';
+                html += '<div class="progress-bar" style="width: '+getPercentages(appState.statistics.turnUserCount, appState.statistics[m.id])+'%"><span>'+appState.statistics[m.id]+'</span></div>';
                 html += '</div>';
                 html += '</div>';
             }
