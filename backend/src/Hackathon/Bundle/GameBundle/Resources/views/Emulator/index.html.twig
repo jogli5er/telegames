@@ -12,21 +12,45 @@
 </style>
 
 <div class="page">
+    <!-- ContentStart -->
     <div class="teletext">{{ text }}</div>
+    <!-- ContentEnd -->
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 
+    var debug = false;
+    if (location.href.indexOf('debug=1') !== -1) {
+        debug = true;
+    }
+    var debugTime = Math.floor(new Date().getTime() / 1000);
+    var newDebugTime = debugTime;
+
     // Ugly and awful hack to refresh the page without blinking
-    setTimeout(function() {
+    function refreshPage() {
         $.get(location.href, function(d) {
-            var pos = d.indexOf('<body>');
-            d = d.substr(pos + 6)
-            d = d.substr(0, d.length - 16);
-            $('body').html($.trim(d));
+            var pos = d.indexOf('<!-- ContentStart -->');
+            d = d.substr(pos + 22);
+            pos = d.indexOf('<!-- ContentEnd -->');
+            d = d.substr(0, pos);
+            $('.page').html($.trim(d));
+            newDebugTime = Math.floor(new Date().getTime() / 1000);
+            if (debug) { console.log((newDebugTime - debugTime) + ' inserted'); }
+            debugTime = newDebugTime;
+
+
+            setTimeout(function() {
+                refreshPage();
+            }, 3000);
+
         });
+    }
+
+    setTimeout(function() {
+        refreshPage();
     }, 3000);
+
 
 </script>
 {% endblock %}
