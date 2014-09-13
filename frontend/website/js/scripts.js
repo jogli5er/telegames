@@ -2,7 +2,7 @@
     var BASE_URL = 'http://10.201.3.43/sites/telegames/backend/web/app_dev.php';
     var URL_GAME_JOIN = '/game/join';
     var URL_GAME_MOVE = '/game/move';
-    var URL_STATISTICS = '/statisitcs/selectedOptions';
+    var URL_STATISTICS = '/statistics/selectedOptions';
     var appState = {
         sessionId: 'somewrongid',
         currentView: 'join', //there is another view for not 
@@ -59,9 +59,9 @@
                 html += '<div class="moveSelectionBtnGroup">'
                 m = data.moves[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>' + "\n";
-                html += '<div class="progress active">';
-                html += '<div class="bar" style="width: '+getPercentages(appState.statistics.turnUserCount, appState.statistics.m.id);+';"><span>'+appState.statistics.m.id+'</span></div>' //TODO: Check compatibility with backend
-                html += '</div>'
+            //    html += '<div class="progress active">';
+            //    html += '<div class="bar" style="width: '+getPercentages(appState.statistics.turnUserCount, appState.statistics[m.id]);+'"><span>'+appState.statistics[m.id]+'</span></div>';
+            //    html += '</div>'
                 html += '</div>';
             }
             html += '</div>';
@@ -107,6 +107,7 @@
         $.get(
             BASE_URL + URL_GAME_MOVE + "/user/" + appState.userId,
             function(data){
+                console.log("data", data);
                 if(data.isFinished) //data.isFinished
                 {
                     appState.nextView  = 'join';
