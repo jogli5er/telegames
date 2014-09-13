@@ -104,5 +104,14 @@ class User
         $this->game = $game;
         return $this;
     }
+
+    /*
+     * Getter for game
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
+    
     
 }
