@@ -18,7 +18,7 @@
         statistics:{
 
         },
-        buttonIdSelected
+        buttonIdSelected: null
     };
     var container = w.document.getElementById('mainContainer');
 
