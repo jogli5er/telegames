@@ -2,6 +2,7 @@
     var BASE_URL = 'http://10.201.3.43/sites/telegames/backend/web/app_dev.php';
     var URL_GAME_JOIN = '/game/join';
     var URL_GAME_MOVE = '/game/move';
+    var URL_STATISTICS = '/statisitcs/selectedOptions';
     var appState = {
         sessionId: 'somewrongid',
         currentView: 'join', //there is another view for not 
@@ -13,6 +14,9 @@
             clientCurrentTime: 'unixtimestring', //Unix timestamp
             remainingTime: 60, //Seconds
             timeoutId: null
+        },
+        statistics:{
+
         }
     };
     var container = w.document.getElementById('mainContainer');
@@ -49,14 +53,14 @@
             html += '<h2>Choose your move</h2>';
             html += '<div class="roundStartsIn">';
             html += 'Next turn starts in: <span class="timer"></span></div>';
-            html += 'Total Users: 96';
+            html += 'Total Users: '+appState.statistics.userCount;
             var m;
             for (var i = 0, len = data.moves.length; i < len; i++) {
                 html += '<div class="moveSelectionBtnGroup">'
                 m = data.moves[i];
                 html += '<button type="button" class="btn btn-primary" data-value="' + m.id + '">' + m.name + '</button>' + "\n";
                 html += '<div class="progress active">';
-                html += '<div class="bar" style="width: '+getPercentages(data.totalActiveUsers, data.moves[i].usersSelected);+';"><span>'+data.moves[i].usersSelected+'</span></div>' //TODO: Check compatibility with backend
+                html += '<div class="bar" style="width: '+getPercentages(appState.statistics.7, appState.statistics.m.id);+';"><span>'+appState.statistics.m.id+'</span></div>' //TODO: Check compatibility with backend
                 html += '</div>'
                 html += '</div>';
             }
@@ -77,7 +81,7 @@
         appState.time.timeoutId = setTimeout(function(){
             appState.time.remainingTime = appState.time.remainingTime - 1;
             if( appState.time.remainingTime >= 1 ){
-                getNext();
+                getStatistics();
                 setTimer();
             }
             else
@@ -101,7 +105,7 @@
     var getNext = function(){
         console.log("Get next view from server");
         $.get(
-            BASE_URL + URL_GAME_MOVE,
+            BASE_URL + URL_GAME_MOVE + "/user/" + appState.userId,
             function(data){
                 if(data.isFinished) //data.isFinished
                 {
@@ -110,11 +114,10 @@
                     return ;
                 }
                 else{
-                /*    if(data.currentTeamId == appState.selectedTeam)
-                        appState.nextView  = 'move';
+                    if(data.moves.length == 0)
+                        appState.nextView = 'waiting';
                     else
-                        appState.nextView = 'waiting';*/
-                    appState.nextView = 'move';
+                        appState.nextView = 'move';
                 }
                 changeState(data);
                 setRemainingTime(data.currentMoveTTL);
@@ -138,7 +141,17 @@
     }
 
 //STATISTICS
-
+    var getStatistics = function(){
+        $.get(
+            BASE_URL + URL_STATISTICS,
+            function(data){
+                console.log(data);
+                appState.statistics = data;
+                setRemainingTime(data.currentMoveTTL);
+                setTimer();
+            }
+        );
+    }
     var getPercentages = function(totalUsers, selectedUsers) {
         return (selectedUsers/totalUsers)*100;
     }
