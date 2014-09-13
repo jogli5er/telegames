@@ -83,7 +83,7 @@
             appState.time.remainingTime = appState.time.remainingTime - 1;
             if( appState.time.remainingTime >= 1 ){
                 getStatistics();
-                changeState();
+                getNext();
                 setTimer();
             }
             else
